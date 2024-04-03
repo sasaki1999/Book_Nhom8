@@ -4,7 +4,7 @@
   --iq-title-text: #11141b;
   --iq-body-text: #777D74;
   --iq-body-bg : #fbfcff;
-  --iq-primary: #f6a429;
+  --iq-primary: #000;
   --iq-secondary: #a09e9e;
   --iq-success: #ffb326;
   --iq-warning: #ffa639;
@@ -22,7 +22,7 @@
   --iq-light-warning: #fffcf3;
   --iq-light-info: #eee6f5;
   --iq-light-dark: #f0efef;
-  --iq-primary-hover: #e98c0a;
+  --iq-primary-hover: #659DBD;
    --iq-secondary-hover: #807e7e;
   --iq-success-hover: #f28628;
   --iq-danger-hover: #f78673;
