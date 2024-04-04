@@ -415,7 +415,7 @@ Buttons
 .btn-info { background-color: var(--iq-info); border-color: var(--iq-info); }
 .btn-light { background-color: var(--iq-light); border-color: var(--iq-light); }
 .btn-dark { background-color: var(--iq-dark); border-color: var(--iq-dark); }
-.btn-white { background-color: var(--iq-white); border-color: var(--iq-white); color: var(--iq-primary); }
+.btn-white { background-color: var(--iq-white); border-color: var(--iq-white); color: #57a4d6; }
 
 /*--------------*/
 .btn-primary:hover { background: var(--iq-primary-hover) !important; border-color: var(--iq-primary-hover) !important; }
