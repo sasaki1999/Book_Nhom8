@@ -1203,7 +1203,7 @@ app.controller("ctrl", function ($scope, $http, $interval) {
 
 	$scope.pagerfavorite = {
 		page: 0,
-		size: 10,
+		size: 8,
 		get favorites() {
 			var start = this.page * this.size;
 			return $scope.favorites.slice(start, start + this.size);

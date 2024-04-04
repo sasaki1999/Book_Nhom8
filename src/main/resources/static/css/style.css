@@ -568,7 +568,7 @@ body.sidebar-main .content-page { margin-left: 80px; }
 .quantitys .btn { border: 1px solid var(--iq-border); width: 30px; height: 42px; border-radius: 0; padding: 0; vertical-align: top; background-color: var(--iq-white); cursor: pointer; }
 #description-slider-nav li { margin-top: 15px; margin-bottom: 15px; }
 .iq-product-action { font-size: 20px;line-height: 20px; }
-.view-book .btn-white:hover { background: var(--iq-primary); color: var(--iq-white); border-color: var(--iq-primary); }
+.view-book .btn-white:hover { background: #57a4d6; color: white;  }
 
 /* --------------- */
 .iq-card.iq-border-box { border-bottom: 4px solid; }
