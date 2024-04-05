@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.dao.BookDAO;
+import com.poly.dao.CategoryDAO;
 import com.poly.entity.Book;
 import com.poly.entity.Category;
 import com.poly.service.CategoryService;
@@ -26,6 +27,9 @@ public class CategoryRestController {
 	
 	@Autowired
 	 BookDAO bookdao;
+	
+	@Autowired
+	CategoryDAO ctdao;
 
 	@GetMapping
 	public List<Category> getAll() {
@@ -39,7 +43,7 @@ public class CategoryRestController {
 	
 	@GetMapping("product/{id}")
 	public List<Book> getproductcategori(@PathVariable("id") String id) {
-		Category cate = categoryService.findById(id);
+		Category cate = ctdao.findById(id).get();
 		return bookdao.findByCategory(cate);
 	}
 

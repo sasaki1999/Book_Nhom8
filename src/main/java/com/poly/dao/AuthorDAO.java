@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.poly.entity.Author;
 
 
-public interface AuthorDAO extends JpaRepository<Author, String>{
+public interface AuthorDAO extends JpaRepository<Author, Integer>{
 
 }

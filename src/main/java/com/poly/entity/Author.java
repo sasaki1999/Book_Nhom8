@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +23,8 @@ import lombok.ToString;
 @Table(name = "Authors")
 public class Author implements Serializable{	
 	@Id
-	String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer id;
 	String name;
 	
 //	@JsonIgnore
