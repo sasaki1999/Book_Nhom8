@@ -5,30 +5,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
-
-
 </style>
 </head>
 
 <body>
 	<!-- TOP Nav Bar -->
 	<div class="iq-top-navbar">
-
-
-
-
-		<div class="iq-navbar-custom" style="background: #659DBD; height: 150px">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="navbar-breadcrumb text-container">
-					<a href="/">
-						<img style="max-width: 100px;border-radius: 49px;" src="../../images/logostore1.jpg" alt="">
+		<img src="../../images/Header_1263x60.png" style="width: 100%">
+		<div class="iq-navbar-custom" style="background: #659DBD; height: 100px">
+			<nav class="navbar navbar-expand-lg navbar-light" style="padding: 0px 20px">
+				<div class="navbar-breadcrumb text-container" style="padding: 0px">
+					<a href="/" >
+						<img style="max-width: 100px;border-radius: 50px;" src="../../images/logostore1.jpg" alt="" >
 					</a>
 				</div>
 				<div class="iq-search-bar">
 					<form  ng-submit="submitForm()" class="searchbox">
-						<input style="border-radius: 49px" ng-model="searchKeyword" type="text"
-							class="text search-input" placeholder="Tìm kiếm truyện tranh...">
+						<input style="border-radius: 49px; width: 500px" ng-model="searchKeyword" type="text"
+							class="text search-input" placeholder="Tìm kiếm truyện tranh..." >
 						<a class="search-link"><i class="ri-search-line"></i></a>
 					</form>
 				</div>
@@ -45,17 +39,17 @@
 							</form></li>
 						<li class="nav-item nav-icon"><a href="/favorite"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-heart-line"></i>
+								class="ri-heart-line" style="color: white;"></i>
 						</a></li>
 						<li class="nav-item nav-icon"><a href="#"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-notification-2-line"></i> <span
+								class="ri-notification-2-line" style="color: white"></i> <span
 								class="bg-primary dots"></span>
 						</a>
 							<div class="iq-sub-dropdown">
 								<div class="iq-card shadow-none m-0">
 									<div class="iq-card-body p-0">
-										<div class="p-3" style="background-color: #B22D28">
+										<div class="p-3" style="background-color: #659DBD">
 											<h5 class="mb-0 text-white">
 												Thông Báo<small class="badge  badge-light float-right pt-1">{{getOrderItem()}}</small>
 											</h5>
@@ -78,7 +72,7 @@
 							</div></li>
 						<li class="nav-item nav-icon dropdown"><a href="#"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-shopping-cart-2-line"></i> <th:block
+								class="ri-shopping-cart-2-line" style="color: white"></i> <th:block
 									th:if="${#request.remoteUser}">
 									<th:block th:if="${sum} != null">
 										<span class="badge badge-danger count-cart rounded-circle">{{
@@ -93,7 +87,7 @@
 							<div class="iq-sub-dropdown">
 								<div class="iq-card shadow-none m-0">
 									<div class="iq-card-body p-0 toggle-cart-info">
-										<div class="p-3" style="background-color: #B22D28">
+										<div class="p-3" style="background-color:  #659DBD">
 											<h5 class="mb-0 text-white">
 												Giỏ Hàng<small class="badge  badge-light float-right pt-1">{{
 													getTotalItem()}}</small>
@@ -116,7 +110,7 @@
 										</a>
 										<div class="d-flex align-items-center text-center p-3">
 											<a class="btn mr-2 iq-sign-btn" href="/checkout"
-												role="button" style="background-color: #B22D28">Giỏ Hàng</a>
+												role="button" style="background-color:  #659DBD">Giỏ Hàng</a>
 										</div>
 									</div>
 								</div>
@@ -137,7 +131,7 @@
 								<div class="iq-sub-dropdown iq-user-dropdown">
 									<div class="iq-card shadow-none m-0">
 										<div class="iq-card-body p-0 ">
-											<div class="p-3" style="background: #B22D28">
+											<div class="p-3" style="background:  #659DBD">
 												<h5 class="mb-0 text-white line-height">Xin Chào
 													{{user.fullname}}</h5>
 											</div>
@@ -181,7 +175,7 @@
 						</th:block>
 						<th:block th:unless="${#request.remoteUser}">
 							<li style="margin-top: 30px; color: black;"><a
-								class="dropdown-item" th:href="@{/security/login/form}"> <b>Đăng
+								class="dropdown-item" th:href="@{/security/login/form}" style="padding: 5px;border-radius: 5px"> <b>Đăng
 										nhập</b>
 							</a></li>
 						</th:block>
