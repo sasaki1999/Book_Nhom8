@@ -18,7 +18,7 @@ public class UploadServiceImpl implements UploadService{
 
 	@Override
 	public File save(MultipartFile file, String folder) {
-		File dir = new File(("D:\\Git\\DuAnTotNghiep\\FivePlusBook_DATN\\src\\main\\resources\\static\\images\\" + folder));
+		File dir = new File(("D:\\Git\\DATN-BOOK\\Book_DATN\\src\\main\\webapp\\images\\" + folder));
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}

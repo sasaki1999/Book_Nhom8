@@ -12,13 +12,110 @@
     <div id="content-page" class="content-page">
         <div class="null" style="height: 50px;"></div>
         <div class="container-fluid checkout-content" style="width: 80%;">
-            <div class="container">
+            <div class="container" style="margin-bottom: 200px;">
+                <div class="container_header" style="background-color: #84bde8;
+                text-align: center;
+                padding: 10px 0px;
+                width: 500px;
+                margin: 0px auto 10px;
+                border-radius: 20px;
+                " >
+                    <h4>THÔNG TIN CHI TIẾT ĐƠN HÀNG</h4>
+                </div>
                 <div class="row">
                     <div class="card col-sm-12 col-md-6">
-                        <div class="card-header border-0"
-                            style="font-size: 14px;
-                        color: #141414; font-weight: 600;
-                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                        <div  style="border-bottom: 2px solid #84bde8;">
+                            THÔNG TIN NGƯỜI NHẬN
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="label">
+                                            <div
+                                                style="font-size: 14px;
+                                            color: #141414;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                                                Họ và tên:</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="value text-bold"><span
+                                                class="block-center block-left block-wrap"><span class=""
+                                                    style="font-size: 14px;
+                                                    color: #141414; font-weight: 600;
+                                                    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${bill.account.fullname}]]</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="label">
+                                            <div
+                                                style="font-size: 14px;
+                                            color: #141414;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                                                Số điện thoại:</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="value text-bold"><span
+                                                class="block-center block-left block-wrap"><span class=""
+                                                    style="font-size: 14px;
+                                                color: #141414; font-weight: 600;
+                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${bill.phone}]]</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="label">
+                                            <div
+                                                style="font-size: 14px;
+                                            color: #141414;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                                                Địa chỉ giao hàng:</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="value text-bold mr-0"><span
+                                                class="block-center block-left block-wrap"><span class=""
+                                                    style="font-size: 14px;
+                                                color: #141414; font-weight: 600;
+                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${bill.address}]]</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="label">
+                                            <div
+                                                style="font-size: 14px;
+                                            color: #141414;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                                                Ghi chú giao hàng:</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="value text-bold mr-0"><span
+                                                class="block-center block-left block-wrap"><span class=""
+                                                    style="font-size: 14px;
+                                            color: #141414; font-weight: 600;
+                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${bill.note}]]</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-sm-12 col-md-6">
+                        <div style="border-bottom: 2px solid #84bde8;">
                             THÔNG TIN ĐƠN HÀNG
                         </div>
                         <div class="card-body">
@@ -39,7 +136,7 @@
                                                     style="font-size: 14px;
                                                     color: #141414; font-weight: 600;
                                                     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;"
-                                                    id="ordercode">[[${order_code}]]</span></span>
+                                                    id="billid" th:text="${bill.id}"></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -48,11 +145,8 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="label">
-                                            <div
-                                                style="font-size: 14px;
-                                            color: #141414;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                Ngày lấy dự kiến:</div>
+                                            <div>
+                                                Ngày lấy hàng dự kiến:</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
@@ -60,7 +154,7 @@
                                                 class="block-center block-left block-wrap"><span class=""
                                                     style="font-size: 14px;
                                                 color: #141414; font-weight: 600;
-                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${pickup_time}]]</span></span>
+                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;"th:text="${#dates.format(bill.createDate, 'EEEE, d-M-yyyy')}"></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +202,7 @@
                                             font-size: 12px;
                                             font-weight: 600;
                                             font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                [[${statusghn}]]</div><br><span
+                                                [[${bill.orderstatus}]]</div><br><span
                                                 class="block-center block-left block-wrap"><span
                                                     class="text-normal"></span></span>
                                         </div>
@@ -117,147 +211,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card col-sm-12 col-md-6">
-                        <div class="card-header border-0"
-                            style="font-size: 14px;
-                        color: #141414; font-weight: 600;
-                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                            THÔNG TIN NGƯỜI NHẬN
-                        </div>
-                        <div class="card-body">
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="label">
-                                            <div
-                                                style="font-size: 14px;
-                                            color: #141414;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                Họ và tên:</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="value text-bold"><span
-                                                class="block-center block-left block-wrap"><span class=""
-                                                    style="font-size: 14px;
-                                                    color: #141414; font-weight: 600;
-                                                    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${to_name}]]</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="label">
-                                            <div
-                                                style="font-size: 14px;
-                                            color: #141414;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                Số điện thoại:</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="value text-bold"><span
-                                                class="block-center block-left block-wrap"><span class=""
-                                                    style="font-size: 14px;
-                                                color: #141414; font-weight: 600;
-                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${to_phone}]]</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="label">
-                                            <div
-                                                style="font-size: 14px;
-                                            color: #141414;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                Địa chỉ giao hàng:</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="value text-bold mr-0"><span
-                                                class="block-center block-left block-wrap"><span class=""
-                                                    style="font-size: 14px;
-                                                color: #141414; font-weight: 600;
-                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${to_address}]]</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="label">
-                                            <div
-                                                style="font-size: 14px;
-                                            color: #141414;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
-                                                Ghi chú giao hàng:</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="value text-bold mr-0"><span
-                                                class="block-center block-left block-wrap"><span class=""
-                                                    style="font-size: 14px;
-                                            color: #141414; font-weight: 600;
-                                            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${note}]]</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
-                    <div class="card col-sm-12 col-md-6">
-                        <div class="card-header border-0"
-                            style="font-size: 14px;
-                        color: #141414; font-weight: 600;
-                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                <div class="card col-sm-12 col-md-12">
+                        <div style="border-bottom: 2px solid #84bde8;">
                             THÔNG TIN CHI TIẾT SẢN PHẨM ĐƠN HÀNG
                         </div>
                         <div class="card-body">
-                            <div>
-                                <div class="row">
-                                    <div class="product-order" th:each="p : ${bdetails}">
-                                        <div class="row" style="margin-bottom: 5px;">
-                                            <div class="col-lg-2 col-md-1">
-                                                <img th:src="@{|/images/book/${p.book.image}|}" style="width: 70%;">
-                                            </div>
-                                            <div class="col-lg-4 col-md-2">
-                                                <div class="value text-bold"><span
-                                                        class="block-center block-left block-wrap"><span class=""
-                                                            style="font-size: 14px;
-                                                                        color: #141414; font-weight: 600;
-                                                                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${p.book.name}]]</span></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-2">
-                                                <div class="value text-bold"><span
-                                                        class="block-center block-left block-wrap"><span class=""
-                                                            style="font-size: 14px;
-                                                                    color: #141414; font-weight: 600;
-                                                                    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${#numbers.formatDecimal(p.price, 0, 'POINT', 0, 'POINT')} ]] VNĐ</span></span>
-                                            </div>
-                                        </div>
-                                        <div th:if="${tt == 'ready_to_pick'}" class="col-lg-2 col-md-1">
-                                            <a th:href="@{/evaluate/{id}(id=${p.book.id})}">Đánh giá</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="table-borderless" style="width: 100%;">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">TÊN SẢN PHẨM</th>
+                                    <th scope="col">GIÁ</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr th:each="p : ${bdetails}" >
+                                    <th scope="row">
+                                        <img th:src="@{|/images/book/${p.book.image}|}" style="width: 50px; height: 70px; border-radius: unset;">
+                                    </th>
+                                    <td>[[${p.book.name}]]</td>
+                                    <td>[[${#numbers.formatDecimal(p.price, 0, 'POINT', 0, 'POINT')} ]] VNĐ</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="card col-sm-12 col-md-6">
-                    <div class="card-header border-0"
-                        style="font-size: 14px;
-                    color: #141414; font-weight: 600;
-                    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+                <div class="card col-sm-12 col-md-12">
+                    <div style="border-bottom: 2px solid #84bde8;">
                         THÔNG TIN ĐẶT HÀNG
                     </div>
                     <div class="card-body" th:object="${bill}">
@@ -277,7 +261,7 @@
                                             class="block-center block-left block-wrap"><span class="" th:with="createDate=*{createDate}"
                                                 style="font-size: 14px;
                                                 color: #141414; font-weight: 600;
-                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${#dates.format(createDate, 'dd/MM/yyyy')}]]</span></span>
+                                                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[${#dates.format(createDate, 'dd-MM-yyyy HH:mm')}]]</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -340,16 +324,24 @@
                                             class="block-center block-left block-wrap"><span class=""
                                                 style="font-size: 14px;
                                         color: #141414; font-weight: 600;
-                                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">[[*{status}]]</span></span>
+                                        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;"  th:text="${bill.status ? 'Đã thanh toán' : 'Chưa thanh toán'}"></span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: flex-end; width: 100%;">
+                        <div class="row mb-3 mr-3" >
+                            <button class="btn btn-danger" th:if="${bill.orderstatus == 'Chờ xác nhận'}"
+                            ng-click="cancelOrder()">Hủy đơn hàng</button>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>
+    
     
 </div>
 </body>
