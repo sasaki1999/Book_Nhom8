@@ -3,6 +3,7 @@ package com.poly.store.service.impl;
 import java.io.File;
 import java.io.IOException;
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,12 +24,12 @@ public class UploadServiceImpl implements UploadService {
 
 	@Override
 	public File save(MultipartFile file, String folder) {
-
 		try {
 			Resource resource = new ClassPathResource("/static/images/");
-			String path = resource.getFile().getAbsolutePath() +"/";
-			System.out.println(path);
-			File dir = new File(path + folder);
+			 String path = resource.getFile().getAbsolutePath() +"/";
+			 String modifiedPath = path.replace("target\\classes", "src\\main\\resources");
+			System.out.println(modifiedPath);
+			File dir = new File(modifiedPath + folder);
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
