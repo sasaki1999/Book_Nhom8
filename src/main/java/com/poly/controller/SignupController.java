@@ -42,7 +42,7 @@ public class SignupController {
 	}
 
 	@RequestMapping("create")
-	public String create(Account account, @RequestParam("email") String email, Model model, @RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
+	public String create(Account account, @RequestParam("email") String email, Model model,
 			@RequestParam("password") String password, @RequestParam("confirm") String confirm,
 			@RequestParam("username") String username) throws IllegalStateException, IOException {
 
@@ -51,45 +51,15 @@ public class SignupController {
 			if(account2.getUsername().equals(username)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Tên đăng nhập đã được sử dụng ");
-				return "User/signup";
+				return "User/signup";			
 			}
 			if(account2.getEmail().equals(email)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Email đã được sử dụng ");
-				return "User/signup";
+				return "User/signup";		
 			}
-			if(account2.getPhone().equals(phone)) {
-				model.addAttribute("account", account);
-				model.addAttribute("message", "Số điện thoại đã được sử dụng ");
-				return "User/signup";
-			}
+			
 		}
-		if (fullname.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Họ Và Tên");
-			return "User/signup";
-		}
-		if (username.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Tên Đăng Nhập");
-			return "User/signup";
-		}
-		if (email.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Email");
-			return "User/signup";
-		}
-		if (password.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Mật Khẩu ");
-			return "User/signup";
-		}
-		if (phone.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Số Điện Thoai");
-			return "User/signup";
-		}
-
 		
 
 		Integer ma = (int) mxn;
