@@ -49,7 +49,6 @@ app.controller("product-ctrl", function($scope, $http) {
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
-		console.log(item);
 		$http.post(`/rest/products`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
@@ -193,11 +192,11 @@ app.controller("product-ctrl", function($scope, $http) {
 	$scope.imageChangedadd = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
-		$http.post('/rest/upload/bookdec', data, {
+		$http.post('/rest/upload/book', data, {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
-			$scope.image.link = resp.data.name;
+			$scope.form.image = resp.data.name;
 		}).catch(error => {
 			alert("Lỗi upload hình ảnh");
 			console.log("Error", error);
