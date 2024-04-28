@@ -23,7 +23,4 @@ public class SessionService {
 		session.removeAttribute(name);
 	}
 
-    public Object getAttribute(String mxn) {
-        return null;
-    }
 }

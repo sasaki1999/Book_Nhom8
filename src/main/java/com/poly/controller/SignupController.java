@@ -122,33 +122,27 @@ public class SignupController {
 	}
 
 	@RequestMapping("confirm")
-	public String confirm(Model model, @RequestParam(value = "confirm", required = false) Integer confirm) {
-		Integer ma = (Integer) session.getAttribute("mxn");
-
-		// Kiểm tra nếu confirm là null
+	public String Confirm(Model model, @RequestParam("confirm") Integer confirm) {
+		Integer ma = session.get("mxn");
 		if (confirm == null) {
-			// Trả về trang confirm với thông báo lỗi
-			model.addAttribute("error", "Vui lòng nhập mã xác nhận!");
-			return "User/confirm";
-		}
-
-		// Kiểm tra nếu mã xác nhận không chính xác
-		if (!confirm.equals(ma)) {
-			// Trả về trang confirm với thông báo lỗi
 			model.addAttribute("error", "Mã Xác Nhận Không Chính Xác!");
 			return "User/confirm";
+		} else {
+			if (!confirm.equals(ma)) {
+				model.addAttribute("error", "Mã Xác Nhận Không Chính Xác!");
+				return "User/confirm";
+			} else {
+				Account item = session.get("account");
+				//item.setCreatedate(new Date());
+				model.addAttribute("item", item);
+				dao.save(item);
+				Authority au = new Authority();
+				au.setAccount(item);
+				au.setRole(rdao.findById("USER").get());
+				audao.save(au);
+			}
 		}
-
-		// Nếu mã xác nhận chính xác, thực hiện các thao tác tiếp theo
-		Account item = (Account) session.getAttribute("account");
-		model.addAttribute("item", item);
-		dao.save(item);
-		Authority au = new Authority();
-		au.setAccount(item);
-		au.setRole(rdao.findById("USER").get());
-		audao.save(au);
-
-		return "redirect:/security/login"; // Chuyển hướng đến trang đăng nhập
+		return "/security/login";
 	}
 
 	@RequestMapping("signin")
