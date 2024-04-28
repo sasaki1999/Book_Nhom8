@@ -52,9 +52,23 @@ app.controller("authority-ctrl", function ($scope, $http, $location) {
     $scope.grant_authority = function (authority) {
         $http.post(`${url1}`, authority).then(resp => {
             $scope.authorities.push(resp.data);
-            sweetalert("Cấp quyền sử dụng thành công!");
+            Swal.fire({
+				type: 'success',
+				title: 'Cấp quyền sử dụng thành công',
+				text: 'Quyền sử dụng đã được thêm',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
         }).catch(error => {
-            sweetalert("Cấp quyền sử dụng thất bại!");
+            Swal.fire({
+				type: 'error',
+				title: 'Lỗi cấp quyền sử dụng',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
             console.log("Error: ", error);
         });
     }
@@ -64,9 +78,23 @@ app.controller("authority-ctrl", function ($scope, $http, $location) {
         $http.delete(`${url1}/${authority.id}`).then(resp => {
             var index = $scope.authorities.findIndex(a => a.id == authority.id);
             $scope.authorities.splice(index, 1);
-            sweetalert("Thu hồi quyền sử dụng thành công!");
+            Swal.fire({
+				type: 'success',
+				title: 'Thu hồi quyền sử dụng thành công',
+				text: 'Quyền sử dụng đã được thu hồi',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
         }).catch(error => {
-            sweetalert("Thu hồi quyền sử dụng thất bại!");
+            Swal.fire({
+				type: 'error',
+				title: 'Lỗi thu hồi quyền sử dụng',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
             console.log("Error: ", error);
         });
     }
