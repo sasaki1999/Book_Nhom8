@@ -43,9 +43,10 @@ public class SignupController {
 
 	@RequestMapping("create")
 	public String create(Account account, @RequestParam("email") String email, Model model, @RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
-			@RequestParam("password") String password, @RequestParam("confirm") String confirm,
-			@RequestParam("username") String username) throws IllegalStateException, IOException {
+						 @RequestParam("password") String password, @RequestParam("confirm") String confirm,
+						 @RequestParam("username") String username) throws IllegalStateException, IOException {
 
+		//Bat loi loi dang ki
 		List<Account> all=dao.findAll();
 		for (Account account2 : all) {
 			if(account2.getUsername().equals(username)) {
@@ -90,7 +91,7 @@ public class SignupController {
 			return "User/signup";
 		}
 
-		
+
 
 		Integer ma = (int) mxn;
 
@@ -105,18 +106,18 @@ public class SignupController {
 				+ "Trân trọng,\r\n" + "FBook";
 
 
-			if (confirm.equals(password)) {
-				mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
+		if (confirm.equals(password)) {
+			mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
 
-				session.set("mxn", ma);
-				session.set("account", account);
+			session.set("mxn", ma);
+			session.set("account", account);
 
-				return "User/confirm";
-			} else {
-				model.addAttribute("account", account);
-				model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
-				return "User/signup";
-			}
+			return "User/confirm";
+		} else {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
+			return "User/signup";
+		}
 //		}
 
 	}
@@ -144,6 +145,7 @@ public class SignupController {
 		}
 		return "/security/login";
 	}
+
 
 	@RequestMapping("signin")
 	public String signin() {
