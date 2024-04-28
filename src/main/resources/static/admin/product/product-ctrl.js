@@ -55,9 +55,23 @@ app.controller("product-ctrl", function($scope, $http) {
 			$scope.items.push(resp.data);
 			$scope.initialize();
 			$scope.reset();
-			Swal.fire("Success", "Thêm sách thành công!", "success");
+			Swal.fire({
+				type: 'success',
+				title: 'Thêm sách thành công',
+				text: 'Sách mới đã được thêm',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
 		}).catch(error => {
-			Swal.fire("Error", "Thêm sách thất bại!", "error");
+			Swal.fire({
+				type: 'error',
+				title: 'Lỗi thêm sách',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
 			console.log("Error", error);
 		})
 	}
@@ -69,9 +83,23 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			$scope.initialize();
-			Swal.fire("Success", "Cập nhật thành công!", "success");
+			Swal.fire({
+				type: 'success',
+				title: 'Cập nhật sách thành công',
+				text: 'Sách đã được cập nhật',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
 		}).catch(error => {
-			Swal.fire("Error", "Cập nhật thất bại!", "error");
+			Swal.fire({
+				type: 'error',
+				title: 'Lỗi cập nhật sách',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
 			console.log("Error", error);
 		})
 	}
@@ -82,9 +110,23 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
-			alert("Xóa sản phẩm thành công")
+			Swal.fire({
+				type: 'success',
+				title: 'Xóa sách thành công',
+				text: 'Sách đã được xóa',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
 		}).catch(error => {
-			alert("Lỗi xóa sản phẩm");
+			Swal.fire({
+				type: 'error',
+				title: 'Lỗi xóa sách',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
 			console.log("Error", error);
 		})
 	}
