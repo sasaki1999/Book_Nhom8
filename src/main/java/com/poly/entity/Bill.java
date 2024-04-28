@@ -48,7 +48,8 @@ public class Bill implements Serializable{
 	@JoinColumn(name = "billtotal")
 	Double billtotal;	
 	@JoinColumn(name = "status")
-	String status;
+	boolean status;
+	String orderstatus;
 	@JoinColumn(name = "address")
 	String address;
 	@JsonIgnore

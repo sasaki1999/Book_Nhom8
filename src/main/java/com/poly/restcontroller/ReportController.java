@@ -48,4 +48,9 @@ public class ReportController {
 
         return orderDetailsService.findTopSellingProducts();
     }
+    
+    @GetMapping("/sumCategory")
+	public List<Object[]> getSumCate(@RequestParam int year) {
+		return orderDetailsService.getTotalSoldByCategoryAndMonth(year);
+}
 }

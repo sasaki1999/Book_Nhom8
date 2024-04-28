@@ -6,6 +6,10 @@ app.config(function($routeProvider) {
 			templateUrl: "/admin/product/index.html",
 			controller: "product-ctrl"
 		})
+		.when("/order", {
+			templateUrl: "/admin/order/index.html",
+			controller: "order-ctrl"
+		})
 		.when("/user", {
 			templateUrl: "/admin/user/index.html",
 			controller: "account-ctrl"
@@ -13,6 +17,9 @@ app.config(function($routeProvider) {
 		.when("/donhang", {
 			templateUrl: "/admin/order/index.html",
 			controller: "order-ctrl"
+		}).when("/revenue", {
+			templateUrl: "/admin/revenue/index.html",
+			controller: "revenue-ctrl"
 		})
 		.when("/author", {
 			templateUrl: "/admin/author/index.html",

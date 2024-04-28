@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.poly.entity.Bill;
 import com.poly.entity.BillDetail;
@@ -29,5 +30,11 @@ public interface BillDetailDAO extends JpaRepository<BillDetail, Long>{
 			"GROUP BY p.name " +
 			"ORDER BY SUM(od.quantity) DESC")
 	List<ProductStatistics> findTopSellingProducts();
+	@Query("SELECT  b.book.category.id AS categoryName, SUM(b.quantity) AS totalSoldQuantity " +
+	           "FROM BillDetail b " +
+	           "WHERE YEAR(b.billdate) = :year " +
+	           "GROUP BY b.book.category.id")
+	 List<Object[]> getTotalSoldByCategoryAndMonth(@Param("year") Integer year);
+
 
 }

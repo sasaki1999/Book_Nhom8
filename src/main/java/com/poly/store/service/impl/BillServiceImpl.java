@@ -1,5 +1,6 @@
 package com.poly.store.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import com.poly.entity.Account;
 import com.poly.entity.Bill;
 import com.poly.entity.BillDetail;
 import com.poly.entity.OrderGHN;
+import com.poly.entity.OrderStatistic;
 import com.poly.service.BillService;
 import com.poly.service.SessionService;
 
@@ -115,5 +117,29 @@ public class BillServiceImpl implements BillService  {
 	@Override
 	public List<Bill> findUsername(String id) {
 		return billdao.findUsername(id);
+	}
+	@Override
+	public List<OrderStatistic> countTotalOrdersByMonth(int year) {
+		List<Object[]> results = billdao.countTotalOrdersByMonth(year);
+
+		List<OrderStatistic> statistics = new ArrayList<>();
+		int currentMonth = 1;
+
+		for (Object[] result : results) {
+			int month = (int) result[0];
+			long totalOrders = (long) result[1];
+
+			while (currentMonth <= 12) {
+				if (currentMonth == month) {
+					statistics.add(new OrderStatistic(month, totalOrders));
+					currentMonth++;
+					break;
+				} else {
+					statistics.add(new OrderStatistic(currentMonth, 0));
+					currentMonth++;
+				}
+			}
+		}
+		return statistics;
 	}
 }
