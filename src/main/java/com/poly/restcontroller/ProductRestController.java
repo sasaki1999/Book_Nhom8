@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poly.dao.AccountDAO;
 import com.poly.dao.BillDAO;
 import com.poly.dao.BookDAO;
+import com.poly.dao.ChangePanelDAO;
 import com.poly.dao.ImageDAO;
 import com.poly.entity.Bill;
 import com.poly.entity.Book;
+import com.poly.entity.ChangePanel;
 import com.poly.entity.Image;
 import com.poly.service.ProductService;
 
@@ -49,6 +51,9 @@ public class ProductRestController {
 
 	@Autowired
 	ImageDAO imgaeDao;
+	
+	@Autowired
+	ChangePanelDAO chanchangedaneldao;
 
 	@GetMapping("search")
 	public List<Book> search(@RequestParam(name = "keyword") String keyword) {
@@ -125,5 +130,10 @@ public class ProductRestController {
 	public Double tongthunhap() {
 		return billDao.calculateTotalAmountForAllOrders();
 	}
+	
+	@GetMapping("/changepanels")
+    public List<ChangePanel> getAllChangePanels() {
+        return chanchangedaneldao.findAll();
+    }
 
 }
