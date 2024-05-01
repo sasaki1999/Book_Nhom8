@@ -80,16 +80,17 @@ public class SignupController {
 			model.addAttribute("message", "Vui lòng không bỏ trống Email");
 			return "User/signup";
 		}
+		if (phone.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Số Điện Thoại");
+			return "User/signup";
+		}
 		if (password.isEmpty()) {
 			model.addAttribute("account", account);
 			model.addAttribute("message", "Vui lòng không bỏ trống Mật Khẩu ");
 			return "User/signup";
 		}
-		if (phone.isEmpty()) {
-			model.addAttribute("account", account);
-			model.addAttribute("message", "Vui lòng không bỏ trống Số Điện Thoai");
-			return "User/signup";
-		}
+
 
 
 
@@ -123,10 +124,10 @@ public class SignupController {
 	}
 
 	@RequestMapping("confirm")
-	public String Confirm(Model model, @RequestParam("confirm") Integer confirm) {
+	public String Confirm(Model model, @RequestParam(value = "confirm", required = false) Integer confirm) {
 		Integer ma = session.get("mxn");
 		if (confirm == null) {
-			model.addAttribute("error", "Mã Xác Nhận Không Chính Xác!");
+			model.addAttribute("error", "Vui Lòng Không Để Trống Mã Xác Nhận!");
 			return "User/confirm";
 		} else {
 			if (!confirm.equals(ma)) {
