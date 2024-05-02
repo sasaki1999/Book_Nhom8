@@ -67,7 +67,7 @@ app.controller('statisticalcate-ctrl', function($scope, $http) {
 	};
 
 	$scope.chart = function() {
-		$scope.getSumCatesByMonth(2025).then(function(data) {
+		$scope.getSumCatesByMonth(2023).then(function(data) {
 			var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
 			console.log(data)
 			var mytotalIncomeChart = new Chart(totalIncomeChart, {

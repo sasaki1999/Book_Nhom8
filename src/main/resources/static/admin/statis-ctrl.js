@@ -1,6 +1,6 @@
-app.controller("statis-ctrl", function($scope, $http) {
+app.controller("statis-ctrl", function ($scope, $http) {
 
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		$http.get("/rest/products/demslsp").then(resp => {
 			$scope.slsp = resp.data;
 		});
@@ -14,7 +14,16 @@ app.controller("statis-ctrl", function($scope, $http) {
 			$scope.slcd = resp.data;
 		});
 		$http.get("/rest/products/ddhanghna").then(resp => {
-			$scope.ddhanghna = resp.data;
+			 // Lấy dữ liệu trả về từ phản hồi
+			 // Sử dụng dữ liệu
+			
+
+			var filteredData = resp.data.filter(item => item.orderstatus != 'Đã giao hàng' && item.orderstatus != 'Đã hủy đơn');
+			  for (var i = 0; i < filteredData.length; i++) {
+				var item = resp.data[i];	
+				console.log("Trạng thái đơn hàng:", item.orderstatus);
+			}
+			$scope.ddhanghna = filteredData;
 		});
 		$http.get("/rest/products/tongtienhomnay").then(resp => {
 			$scope.tongtienhomnay = resp.data;
@@ -25,21 +34,20 @@ app.controller("statis-ctrl", function($scope, $http) {
 
 	}
 
-
-	$scope.showOrderDetail = function(orderId) {
+	$scope.showOrderDetail = function (orderId) {
 		$http.get("/rest/orderDetails/" + orderId)
-			.then(function(response) {
+			.then(function (response) {
 				$("#donhangdanggiao").modal("hide");
 				$("#dagiao").modal("hide");
 				$("#dahuy").modal("hide");
 				$scope.selectedOrderDetails = response.data;
 				$('#orderDetailModal').modal('show'); // Hiển thị modal chứa danh sách sản phẩm
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.error("Error fetching order details:", error);
 			});
 	};
-	$scope.closeModal = function() {
+	$scope.closeModal = function () {
 		$("#orderDetailModal").modal("hide");
 	};
 
