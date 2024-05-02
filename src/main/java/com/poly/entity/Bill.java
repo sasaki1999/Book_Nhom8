@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,6 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
-import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Data
@@ -52,6 +50,10 @@ public class Bill implements Serializable{
 	String orderstatus;
 	@JoinColumn(name = "address")
 	String address;
+	String note;
+	String leadtime;
+	String ward;
+	Integer district;
 	@JsonIgnore
 	@OneToMany(mappedBy = "bill")
 	List<BillDetail> billdetails;

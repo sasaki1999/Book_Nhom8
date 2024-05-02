@@ -29,7 +29,7 @@ public class Discount implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	Double discount;
+	Integer discount;
 	Date startdate;
 	Date enddate;
 	

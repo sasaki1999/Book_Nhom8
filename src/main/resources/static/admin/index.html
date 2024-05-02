@@ -3,7 +3,7 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<title>Admin Dashboard - FPStore</title>
+<title>Admin-RinzBook</title>
 <!-- Favicon -->
 <link rel="shortcut icon" href="../../images/favicon.ico" />
 <!-- Bootstrap CSS -->
@@ -55,7 +55,7 @@ body {
     z-index: 1000;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #343a40; /* Updated background color */
+    background-color:#659DBD; /* Updated background color */
     color: #fff; /* Updated text color */
 }
 
@@ -77,12 +77,12 @@ main {
 
 /* Updated typography for the sidebar links */
 .sidebar .nav-link {
-    color: #fff;
+    color: #FFF;
 }
 
 /* Updated styling for nested submenu items */
 .submenu {
-    background-color: #495057;
+    background-color: #E5DDC5;
 }
 
 .submenu .nav-item {
@@ -99,13 +99,13 @@ main {
 }
 
 .sidebar .nav-link:hover {
-    background-color: #495057; /* Darker background on hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow on hover */
-    color: #fff; /* Text color on hover */
+    background-color: #FBEEC1; /* Darker background on hover */
+    box-shadow: 0 0 10px #FBEEC1 ; /* Box shadow on hover */
+    color: #659DBD; /* Text color on hover */
 }
 /* Styling for nested submenu items */
 .submenu {
-    background-color: #495057;
+    background-color: #695DBD;
     border-radius: 5px;
 }
 
@@ -138,9 +138,9 @@ window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
-	theme: "light1", // bạn có thể thay bằng "light1", "light2", "dark1", "dark2"
+	theme: "light2", // bạn có thể thay bằng "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Thống Kê Loại Truyện"
+		text: "Thống Kê Loại Sách"
 	},
 	//axisY: {
 	//	title: "Dự trữ(MMbbl)"
@@ -176,9 +176,10 @@ chart.render();
 	<!-- loader Start -->
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-			<div class="navbar-breadcrumb text-container">
-				<div class="fbstore-text">
-					<a href="/"> F P S T O R E. . . . . .</a>
+			<div class=" text-container">
+				<div class="">
+				<img alt="" src="../../../../images/logostore1.jpg" width="50px" height="50px">
+					<a href="/" >RINZBOOK.VN</a>
 				</div>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -195,7 +196,7 @@ chart.render();
 			<div class="sidebar-sticky">
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link active text-center" href="#">
-							<span data-feather="home"></span>Bảng Điều Khiển <span
+							<span data-feather="home"></span>Tổng Quan <span
 							class="sr-only">(current)</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -206,14 +207,13 @@ chart.render();
 							<ul class="nav flex-column pl-3 submenu">
 								<li class="nav-item"><a class="nav-link" href="#!user">Người
 										Dùng </a></li>
-								<li class="nav-item"><a class="nav-link" href="#!category">Danh
-										Mục Truyện</a></li>
+								<li class="nav-item"><a class="nav-link" href="#!category">Thể loại</a></li>
 								<li class="nav-item"><a class="nav-link" href="#!voucher">Voucher
 								</a></li>
 								<li class="nav-item"><a class="nav-link" href="#!author">Tác
 										Giả </a></li>
-								<li class="nav-item"><a class="nav-link" href="#!product">Truyện
-										Tranh </a></li>
+								<li class="nav-item"><a class="nav-link" href="#!product">Sách
+										 </a></li>
 								<li class="nav-item"><a class="nav-link" href="#!discount">Chương
 										Trình Giảm Giá </a></li>
 								<li class="nav-item"><a class="nav-link" href="#!donhang">Đơn
@@ -231,16 +231,10 @@ chart.render();
 								<li class="nav-item"><a class="nav-link" href="#!nguoimua">Thống
 										Kê Người Mua </a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="#!truyentranh">Thống Kê Truyện Tranh </a></li>
-
+									href="#!truyentranh">Thống Kê Sách </a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="#!loaisach">Thống Kê Loại Truyện</a></li>
-									<li class="nav-item"><a class="nav-link" href="#!order"> Thống Kê Đơn hàng
-									</a></li>
-									<li class="nav-item"><a class="nav-link" href="#!revenue">Thống Kê Doanh thu
-									</a></li>
+									href="#!loaisach">Thống Kê Loại Sản Phẩm</a></li>
 							</ul>
-							
 						</div></li>
 					<li class="nav-item"><a class="nav-link " href="#!authority">
 							<span data-feather="file"></span> Phân Quyền

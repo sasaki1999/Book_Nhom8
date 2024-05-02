@@ -22,8 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public Author findById(String id) {
-
+	public Author findById(Integer id) {
 		return audao.findById(id).get();
 	}
 
@@ -38,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(Integer id) {
 		audao.deleteById(id);
 	}
 

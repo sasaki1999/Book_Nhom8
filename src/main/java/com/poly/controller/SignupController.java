@@ -1,10 +1,8 @@
 package com.poly.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.boot.model.relational.AbstractAuxiliaryDatabaseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +24,7 @@ public class SignupController {
 	@Autowired
 	MailerServiceImpl mailer;
 	@Autowired
-	AccountDAO dao; // làm việc với bảng Account
+	AccountDAO dao;
 	@Autowired
 	SessionService session;
 	@Autowired

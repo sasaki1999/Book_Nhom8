@@ -25,7 +25,7 @@ public interface BillService {
 	List<Bill> findByAccount(Account account);
 
 	Bill createPayment(JsonNode orderData);
-
+	
 	OrderGHN infoOrder(JsonNode data);
 
 	List<BillDetail> findByBill(Long id);
@@ -33,5 +33,4 @@ public interface BillService {
 	List<Bill> findUsername(String id);
 
 	List<OrderStatistic> countTotalOrdersByMonth(int year);
-
 }

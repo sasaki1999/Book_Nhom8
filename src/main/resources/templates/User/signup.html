@@ -24,10 +24,10 @@
 <body>
 	<div class="wrapper">
 		<div class="row"
-			style="margin-left: 300px; margin-right: 300px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);border-radius: 5px; padding: 10px">
+			style="margin: 0 auto; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);border-radius: 5px; padding: 10px">
 			<div class="col-lg-6">
-				<form th:action="@{/create}" method="post" th:object="${account}">
-					<h3 style="font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN</h3>
+				<form th:action="@{/create}" method="post" th:object="${account}" style="width: 450px;">
+					<h3 style="font-weight: bold; text-align: center; color: #3189c5; margin-bottom: 10px;">ĐĂNG KÝ TÀI KHOẢN</h3>
 					<h3 style="color: red;">[[${message}]]</h3>
 					<div class="form-group">
 						<div class="form-wrapper">
@@ -65,18 +65,13 @@
 							class="checkmark"></span>
 						</label>
 					</div>
-					<button>ĐĂNG KÝ NGAY</button>
-				</form>
-			</div>
-			<div class="col-lg-6">
-				<h4 style="text-align: center;">Chào mừng bạn đến với FPStore, đăng ký tài khoản ngay để nhận được toàn bộ trải nghiệm
-					tuyệt vời</h4>
-				<img src="../../images/logologin.png" width="540px"><br>
-				<div class="d-flex mb-5 align-items-center">
+										<div class="d-flex mb-5 align-items-center">
 
 							<span class="ml-auto"><a th:href="@{/security/login/form}"
 								class="forgot-pass">Quay lại đăng nhập</a></span>
 						</div>
+					<button style="background-color: #3189c5;">ĐĂNG KÝ NGAY</button>
+				</form>
 			</div>
 		</div>
 
