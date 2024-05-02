@@ -3,14 +3,14 @@ app.controller("category-ctrl", function ($scope, $http) {
     $scope.items = [];
     $scope.form = {};
 
-    var sweetalert = function (text) {
+/*    var sweetalert = function (text) {
         Swal.fire({
             icon: "success",
             title: text,
             showConfirmButton: false,
             timer: 2000,
         });
-    }
+    }*/
 
     $scope.initialize = function () {
         //load account
@@ -39,24 +39,12 @@ app.controller("category-ctrl", function ($scope, $http) {
         $http.post(`${url}`, item).then(resp => {
             $scope.items.push(resp.data);
             $scope.reset();
-            Swal.fire({
-				type: 'success',
-				title: 'Thêm danh mục thành công',
-				text: 'Danh mục mới đã được thêm',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+            //sweetalert("Thêm mới thành công!");
+            Swal.fire("Thành công", "Thêm mới danh mục thành công !", "success");
         }).catch(error => {
-            Swal.fire({
-				type: 'error',
-				title: 'Lỗi thêm danh mục',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-            console.log("Error", error);
+			Swal.fire("Lỗi", "Vui lòng nhập đầy đủ thông tin !", "error");
+            //sweetalert("Lỗi thêm mới danh mục !");
+            console.log("Lỗi", error);
         });
     }
 
@@ -67,24 +55,12 @@ app.controller("category-ctrl", function ($scope, $http) {
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items[index] = item;
             $scope.reset();
-            Swal.fire({
-				type: 'success',
-				title: 'Cập nhật danh mục thành công',
-				text: 'Danh mục đã được cập nhật',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+            //sweetalert("Cập nhật danh mục thành công!");
+            Swal.fire("Thành công", "Cập nhật danh mục thành công !", "success");
         }).catch(error => {
-            Swal.fire({
-				type: 'error',
-				title: 'Lỗi cập nhật danh mục',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-            console.log("Error", error);
+            //sweetalert("Lỗi cập nhật danh mục!");
+            Swal.fire("Lỗi", "Cập nhật danh mục thất bại !", "error");
+            console.log("Lỗi", error);
         });
     }
 
@@ -94,31 +70,23 @@ app.controller("category-ctrl", function ($scope, $http) {
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items.splice(index, 1);
             $scope.reset();
-            Swal.fire({
-				type: 'success',
-				title: 'Xóa danh mục thành công',
-				text: 'Danh mục đã được xóa',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+            Swal.fire("Thành công", "Xóa danh mục thành công !", "success");
         }).catch(error => {
-            Swal.fire({
-				type: 'error',
-				title: 'Lỗi xóa danh mục',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-            console.log("Error", error);
+            Swal.fire("Lỗi", "Xóa danh mục thất bại !", "error");
+            console.log("Lỗi", error);
         });
     }
-
+	//sap xep
+    $scope.initialize = function () {
+        // Load authors and sort them by ID in ascending order
+        $http.get(url).then(resp => {
+            $scope.items = resp.data.sort((a, b) => a.id - b.id);
+        });
+    }
     //phan trang
         $scope.pager = {
             page: 0,
-            size: 10,
+            size: 5,
             get items() {
                 var start = this.page * this.size;
                 return $scope.items.slice(start, start + this.size);

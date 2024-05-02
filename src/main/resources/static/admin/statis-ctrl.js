@@ -1,6 +1,6 @@
-app.controller("statis-ctrl", function($scope, $http) {
+app.controller("statis-ctrl", function ($scope, $http) {
 
-	$scope.initialize = function() {
+	$scope.initialize = function () {
 		$http.get("/rest/products/demslsp").then(resp => {
 			$scope.slsp = resp.data;
 		});
@@ -25,21 +25,20 @@ app.controller("statis-ctrl", function($scope, $http) {
 
 	}
 
-
-	$scope.showOrderDetail = function(orderId) {
+	$scope.showOrderDetail = function (orderId) {
 		$http.get("/rest/orderDetails/" + orderId)
-			.then(function(response) {
+			.then(function (response) {
 				$("#donhangdanggiao").modal("hide");
 				$("#dagiao").modal("hide");
 				$("#dahuy").modal("hide");
 				$scope.selectedOrderDetails = response.data;
 				$('#orderDetailModal').modal('show'); // Hiển thị modal chứa danh sách sản phẩm
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.error("Error fetching order details:", error);
 			});
 	};
-	$scope.closeModal = function() {
+	$scope.closeModal = function () {
 		$("#orderDetailModal").modal("hide");
 	};
 

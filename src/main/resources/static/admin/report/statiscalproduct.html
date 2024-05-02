@@ -2,13 +2,13 @@
 
 <!-- Page Content  -->
 <div id="content-page" class="">
-	<div class="container-fluid" style="min-height: 600px">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="iq-card">
 					<div class="iq-card-header d-flex justify-content-between">
 						<div class="iq-header-title">
-							<h4 class="card-title">Thống kê Sách</h4>
+							<h4 class="card-title">Thống kê truyện tranh đã bán</h4>
 						</div>
 						
 					</div>
@@ -27,7 +27,7 @@
 									<tr ng-repeat="product in products">
 										 <td>{{ product.name }}</td>
                                         <td>{{ product.totalQuantitySold }}</td>
-                                        <td>{{ product.totalRevenue | number:0 }}</td>
+                                        <td>{{ product.totalRevenue | number:0 }} VNĐ</td>
 									</tr>
 
 								</tbody>

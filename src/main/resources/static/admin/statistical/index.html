@@ -1,0 +1,553 @@
+<!-- Page Content  -->
+<div id="content-page" class="">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="iq-card">
+				<div class="iq-card-header d-flex justify-content-between">
+					<div class="iq-header-title">
+						<h4 class="card-title">Đơn hàng</h4>
+					</div>
+				</div>
+				<div class="iq-card-body">
+					<div class="row">
+						<div class="col-xl-4 col-md-6">
+							<div class="card text-white mb-4" style="background: #00CCFF;">
+								<div class="card-body">
+									Chờ xác nhận <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[0]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(1)" id="viewDetailsLink"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="far fa-calendar-minus"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="card text-white mb-4" style="background: #0241ed;">
+								<div class="card-body">
+									Chờ lấy hàng <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[5]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(4)" id="viewDetailsLink"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-truck-loading"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="card bg-warning text-white mb-4">
+								<div class="card-body">
+									Đang giao <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[1]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(2)" id="ongoing" class="small text-white stretched-link">Xem
+										ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-truck"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="card  text-white mb-4" style="background: #00CC99;">
+								<div class="card-body ">
+									Tiến hành giao hàng <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[4]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(5)" id="delivered"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-biking"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="card  text-white mb-4" style="background: #17c903;">
+								<div class="card-body ">
+									Đã giao <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[2]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(3)" id="delivered"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-people-carry"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-md-6">
+							<div class="card bg-danger text-white mb-4">
+								<div class="card-body">
+									Hủy đơn <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[3]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(6)" id="cancelled"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-window-close"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="iq-card">
+				<div class="iq-card-header d-flex justify-content-between">
+					<div class="iq-header-title">
+						<h4 class="card-title">Đơn hàng </h4>
+					</div>
+
+				</div>
+				<div class="iq-card-body">
+					<div class="table-responsive">
+						<table class="data-tables table table-striped table-bordered" style="width: 100%">
+							<thead>
+								<tr>
+									<th>Khách hàng</th>
+									<th>Ngày mua</th>
+									<th>Tổng tiền</th>
+									<!-- <th>Địa chỉ</th> -->
+									<th>Mã giảm giá</th>
+									<!-- <th>Trạng thái</th> -->
+									<th>Xem chi tiết</th>
+									<th>Hoạt động</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in pager.items">
+									<td>{{item.account.fullname}}</td>
+									<td>{{item.createDate | date:'dd-MM-yyyy HH:mm'}}</td>
+									<td>{{item.billtotal | number : 0}} VNĐ</td>
+									<!-- <td>
+										<p class="mb-0">{{item.address}}</p>
+									</td> -->
+									<td>{{item.voucher.voucherid}}</td>
+									<!-- <td>{{item.status ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td> -->
+									<td><a href="javascript:void(0)" ng-click="modalbill(item)">Chi
+											tiết</a></td>
+									<td>
+										<button ng-if="item.orderstatus === 'Chờ xác nhận'"
+											class="btn btn-primary bg-warning" ng-click="UpBill(item)">Xác
+											nhận</button>
+										<button ng-if="item.orderstatus === 'Chờ xác nhận'" ng-click="cancel(item)"
+											class="btn btn-danger bg-danger">Hủy</button>
+										<span ng-if="item.orderstatus === 'Đã hủy đơn'">Đã hủy đơn</span>
+										<span
+											ng-if="item.orderstatus !== 'Chờ xác nhận' && item.orderstatus !=='Đã hủy đơn'">Hàng
+											đang giao</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="row d-flex justify-content-center align-items-center">
+							<div class="card-header text-center">
+								<button ng-click="pager.first()" class="btn btn-primary">
+									<i class="ri-skip-back-fill"></i>
+								</button>
+								<button ng-click="pager.prev()" class="btn btn-primary">
+									<i class="ri-rewind-fill"></i>
+								</button>
+								<button class="btn btn-success">{{pager.page + 1}} /
+									{{pager.count?pager.count:'1'}}</button>
+								<button ng-click="pager.next()" class="btn btn-primary">
+									<i class="ri-speed-fill"></i>
+								</button>
+								<button ng-click="pager.last()" class="btn btn-primary">
+									<i class="ri-skip-forward-fill"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 				Chi tiết đơn hàng-->
+				<div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog"
+					aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="orderDetailModalLabel">
+									Chi tiết</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div>
+									<div class="null" style="height: 50px;"></div>
+									<div class="container-fluid checkout-content">
+										<div class="container">
+											<div class="row">
+												<div class="card col-sm-12">
+													<div class="card-header border-0" style="font-size: 16px;
+													color: #141414; font-weight: 600;
+													font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+														THÔNG TIN ĐƠN HÀNG
+													</div>
+													<div class="card-body">
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Mã đơn hàng:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																				color: #141414; font-weight: 600;
+																				font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;"
+																				id="ordercode">{{order.id}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Lấy hàng dự kiến:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																			color: #141414; font-weight: 600;
+																			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.createDate | date:'dd-MM-yyyy'}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Ngày giao dự kiến:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold mr-0"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																			color: #141414; font-weight: 600;
+																			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																				{{(order.leadtime * 1000) | date:'dd-MM-yyyy'}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Trạng thái hiện tại:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold">
+																		<div class="status"
+																			style=" background-color: #00467F;
+																		color: #fff;
+																		border-radius: 3px;
+																		padding: 1px 5px;
+																		display: inline-block;
+																		font-size: 12px;
+																		font-weight: 600;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			{{order.orderstatus}}</div><br><span
+																			class="block-center block-left block-wrap"><span
+																				class="text-normal"></span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="card col-sm-12">
+													<div class="card-header border-0" style="font-size: 16px;
+													color: #141414; font-weight: 600;
+													font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+														THÔNG TIN NGƯỜI NHẬN
+													</div>
+													<div class="card-body">
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Họ và tên:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																				color: #141414; font-weight: 600;
+																				font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.account.fullname}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Số điện thoại:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																			color: #141414; font-weight: 600;
+																			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.phone}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Địa chỉ giao hàng:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold mr-0"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																			color: #141414; font-weight: 600;
+																			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.address}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																		color: #141414;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Ghi chú giao hàng:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold mr-0"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																		color: #141414; font-weight: 600;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.note}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="card col-sm-12">
+													<div class="card-header border-0" style="font-size: 16px;
+													color: #141414; font-weight: 600;
+													font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+														THÔNG TIN CHI TIẾT SẢN PHẨM ĐƠN HÀNG
+													</div>
+													<div class="card-body">
+														<div>
+															<div class="row">
+																<div class="product-order"
+																	ng-repeat="o in orderdetails">
+																	<div class="row" style="margin-bottom: 5px;">
+																		<div class="col-lg-4 col-md-2">
+																			<img src="../../images/book/{{o.book.image}}"
+																				style="width: 50%;">
+																		</div>
+																		<div class="col-lg-4 col-md-2 mt-5">
+																			<div class="value text-bold"><span
+																					class="block-center block-left block-wrap"><span
+																						class=""
+																						style="font-size: 16px;
+																									color: #141414; font-weight: 600;
+																									font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{o.book.name}}</span></span>
+																			</div>
+																		</div>
+																		<div class="col-lg-4 col-md-2 mt-5">
+																			<div class="value text-bold"><span
+																					class="block-center block-left block-wrap"><span
+																						class=""
+																						style="font-size: 16px;
+																								color: #141414; font-weight: 600;
+																								font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{o.book.price | number:0}}
+																						VNĐ</span></span>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="card col-sm-12">
+													<div class="card-header border-0" style="font-size: 16px;
+												color: #141414; font-weight: 600;
+												font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+														THÔNG TIN ĐẶT HÀNG
+													</div>
+													<div class="card-body">
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																	color: #141414;
+																	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Ngày đặt hàng:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																			color: #141414; font-weight: 600;
+																			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.createDate | date:'dd-MM-yyyy'}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																	color: #141414;
+																	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Phí vận chuyển:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																		color: #141414; font-weight: 600;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.ship | number:0}}
+																				VNĐ</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																	color: #141414;
+																	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Tổng tiền thanh toán:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold mr-0"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																		color: #141414; font-weight: 600;
+																		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.billtotal | number:0}}
+																				VNĐ</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div>
+															<div class="row">
+																<div class="col-sm-12 col-md-6">
+																	<div class="label">
+																		<div
+																			style="font-size: 16px;
+																	color: #141414;
+																	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">
+																			Trạng thái thanh toán:</div>
+																	</div>
+																</div>
+																<div class="col-sm-12 col-md-6">
+																	<div class="value text-bold mr-0"><span
+																			class="block-center block-left block-wrap"><span
+																				class=""
+																				style="font-size: 16px;
+																	color: #141414; font-weight: 600;
+																	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Cantarell,Helvetica Neue;">{{order.status ? 'Đã thanh toán' : 'Chưa thanh toán'}}</span></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

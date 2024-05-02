@@ -54,16 +54,16 @@ app.controller("voucher-ctrl", function($scope, $http) {
 				text: '',
 				icon: "success",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
 		}).catch(error => {
 			Swal.fire({
 				type: 'error',
 				title: 'Lỗi thêm ảnh',
-				text: error,
+				text: "",
 				icon: "error",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
 			console.log("Error", error);
 		})
@@ -86,23 +86,23 @@ app.controller("voucher-ctrl", function($scope, $http) {
 			$scope.reset();
 			Swal.fire({
 				type: 'success',
-				title: 'Thêm mã thành công',
+				title: 'Thêm voucher thành công !',
 				text: 'Người dùng được sắp xếp theo tên',
 				icon: "success",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
 			$scope.reset_smooth_table();
 		}).catch(error => {
 			Swal.fire({
 				type: 'error',
-				title: 'Lỗi thêm mã',
-				text: error,
+				title: 'Lỗi thêm voucher !',
+				text: 'Vui lòng nhập đầy đủ thông tin',
 				icon: "error",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
-			console.log("Error", error);
+			console.log("Lỗi", error);
 		})
 
 	}
@@ -115,23 +115,23 @@ app.controller("voucher-ctrl", function($scope, $http) {
 			$scope.items[index] = item;
 			Swal.fire({
 				type: 'success',
-				title: 'Cập nhật mã thành công',
-				text: 'Thông mã đã được cập nhật',
+				title: 'Cập nhật voucher thành công !',
+				text: 'Thông voucher đã được cập nhật',
 				icon: "success",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
 			$scope.reset_smooth_table();
 		}).catch(function(error) {
 			Swal.fire({
 				type: 'error',
-				title: 'Lỗi cập nhật mã',
-				text: error,
+				title: 'Lỗi cập nhật voucher !',
+				text: "Vui lòng chọn voucher để cập nhật",
 				icon: "error",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
-			console.log("Erorr", err);
+			console.log("Lỗi", err);
 		})
 	}
 
@@ -150,7 +150,7 @@ app.controller("voucher-ctrl", function($scope, $http) {
 				confirmButtonText: 'Vâng, Tôi đồng ý!'
 			}).then(function() {
 				Swal.fire(
-					'Deleted!',
+					'Xóa !',
 					'Đã xóa thành công',
 					'success'
 				);
@@ -158,19 +158,19 @@ app.controller("voucher-ctrl", function($scope, $http) {
 		}).catch(function(err) {
 			Swal.fire({
 				type: 'error',
-				title: 'Lỗi xóa người dùng',
-				text: 'Người dùng đang ở trạng thái hoạt động !',
+				title: 'Lỗi xóa voucher !',
+				text: 'Vui lòng chọn voucher để xóa',
 				icon: "error",
 				showConfirmButton: false,
-				timer: 2000
+				timer: 3000
 			})
-			console.log("Erorr", err);
+			console.log("Lỗi", err);
 		})
 	}
 
 	$scope.pager = {
 		page: 0,
-		size: 4,
+		size: 5,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);

@@ -11,6 +11,7 @@ import com.poly.entity.BillDetail;
 import com.poly.entity.ProductStatistics;
 import com.poly.entity.ReportCate;
 
+
 public interface BillDetailDAO extends JpaRepository<BillDetail, Long>{
 
 	@Query("SELECT od FROM BillDetail od JOIN FETCH od.book p WHERE od.bill.id = :orderId")
