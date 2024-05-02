@@ -5,7 +5,7 @@
 		<div class="iq-card">
 			<div class="iq-card-header d-flex justify-content-between">
 				<div class="iq-header-title">
-					<h4 class="card-title">Thêm ảnh hình đọc thử</h4>
+					<h4 class="card-title">Thêm ảnh dọc </h4>
 				</div>
 			</div>
 			<div class="iq-card-body">
@@ -15,7 +15,7 @@
 							readonly="readonly" class="form-control">
 					</div>
 					<div class="form-group">
-						<label>Mã truyện:</label> <input type="text"
+						<label>Mã sản phẩm:</label> <input type="text"
 							ng-model="proofreads.book.id" class="form-control">
 					</div>
 <!-- 					<div class="form-group"> -->
@@ -40,9 +40,10 @@
 
 
 					<button ng-click="createproofreads()" class="btn btn-primary">Thêm</button>
-					<button ng-click="updateproofreads()" class="btn btn-success">Cập nhật</button>
-					<button ng-click="deleteproofreads(proofreads)" class="btn btn-danger">Xóa</button>
-					<button ng-click="reset()" class="btn btn-info">Làm mới</button>
+					<button ng-click="updateproofreads()" class="btn btn-primary">Cập
+						nhật</button>
+					<button ng-click="deleteproofreads(proofreads)" class="btn btn-primary">Xóa</button>
+					<button ng-click="reset()" class="btn btn-primary">Làm mới</button>
 				</form>
 			</div>
 		</div>
@@ -61,8 +62,8 @@
 						style="width: 100%">
 						<thead>
 							<tr>
-								<th style="width: 20%;">Mã hình</th>
-								<th style="width: 20%;">Mã truyện</th>
+								<th style="width: 20%;">Id</th>
+								<th style="width: 20%;">Mã sản phẩm</th>
 								<th style="width: 50%;">Hình ảnh chính</th>
 								<th style="width: 20%;">Hình ảnh đọc thử</th>
 								<th>Thao tác</th>
@@ -96,18 +97,36 @@
 					</table>
 					<div class="cart-footer text-center">
 						<button ng-click="pager.first()" class="btn btn-primary">
-							<i class="ri-skip-back-fill"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-arrow-left-circle"
+								viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+								  </svg>
 						</button>
 						<button ng-click="pager.prev()" class="btn btn-primary">
-							<i class="ri-rewind-fill"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+								  </svg>
 						</button>
-						<button class="btn btn-success">{{pager.page +1}} /
+						<button class="btn btn-primary">{{pager.page +1}} of
 							{{pager.count}}</button>
 						<button ng-click="pager.next()" class="btn btn-primary">
-							<i class="ri-speed-fill"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
+								  </svg>
 						</button>
 						<button ng-click="pager.last()" class="btn btn-primary">
-							<i class="ri-skip-forward-fill"></i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-arrow-right-circle"
+								viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+									d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+								  </svg>
 						</button>
 					</div>
 				</div>
