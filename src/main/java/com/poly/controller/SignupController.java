@@ -2,6 +2,8 @@ package com.poly.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,8 @@ public class SignupController {
 						 @RequestParam("password") String password, @RequestParam("confirm") String confirm,
 						 @RequestParam("username") String username) throws IllegalStateException, IOException {
 
+
+
 		//Bat loi loi dang ki
 		List<Account> all=dao.findAll();
 		for (Account account2 : all) {
@@ -86,6 +90,25 @@ public class SignupController {
 			model.addAttribute("message", "Vui lòng không bỏ trống Mật Khẩu ");
 			return "User/signup";
 		}
+		// Bắt lỗi định dạng email
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+		Pattern pattern = Pattern.compile(emailRegex);
+		Matcher matcher = pattern.matcher(email);
+		if (!matcher.matches()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Định dạng email không hợp lệ");
+			return "User/signup";
+		}
+
+		// Bắt lỗi định dạng số điện thoại
+		String phoneRegex = "^(\\+84|0)(\\d{9,10})$";
+		pattern = Pattern.compile(phoneRegex);
+		matcher = pattern.matcher(phone);
+		if (!matcher.matches()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Định dạng số điện thoại không hợp lệ");
+			return "User/signup";
+		}
 
 
 
@@ -115,7 +138,7 @@ public class SignupController {
 			model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
 			return "User/signup";
 		}
-//		}
+//
 
 	}
 

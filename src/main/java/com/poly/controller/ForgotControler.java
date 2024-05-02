@@ -48,6 +48,9 @@ public class ForgotControler {
 
 	@PostMapping("send")
 	public String confirmmk(Model model, @RequestParam("name") String name, @RequestParam("email") String email) {
+
+
+
 		// Kiểm tra xem username hoặc email có trống không
 		if (name.trim().isEmpty() || email.isEmpty()) {
 			model.addAttribute("error", "Vui lòng điền đầy đủ thông tin.");
