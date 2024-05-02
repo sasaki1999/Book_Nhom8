@@ -42,24 +42,25 @@ public class SignupController {
 	}
 
 	@RequestMapping("create")
-	public String create(Account account, @RequestParam("email") String email, Model model, @RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
-						 @RequestParam("password") String password, @RequestParam("confirm") String confirm,
-						 @RequestParam("username") String username) throws IllegalStateException, IOException {
+	public String create(Account account, @RequestParam("email") String email, Model model,
+			@RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
+			@RequestParam("password") String password, @RequestParam("confirm") String confirm,
+			@RequestParam("username") String username) throws IllegalStateException, IOException {
 
-		//Bat loi loi dang ki
-		List<Account> all=dao.findAll();
+		// Bat loi loi dang ki
+		List<Account> all = dao.findAll();
 		for (Account account2 : all) {
-			if(account2.getUsername().equals(username)) {
+			if (account2.getUsername().equals(username)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Tên đăng nhập đã được sử dụng ");
-				return "User/signup";			
+				return "User/signup";
 			}
-			if(account2.getEmail().equals(email)) {
+			if (account2.getEmail().equals(email)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Email đã được sử dụng ");
-				return "User/signup";		
+				return "User/signup";
 			}
-			
+
 		}
 		if (fullname.isEmpty()) {
 			model.addAttribute("account", account);
@@ -87,21 +88,22 @@ public class SignupController {
 			return "User/signup";
 		}
 
-
-
-
 		Integer ma = (int) mxn;
 
-		String thongBao = "Thông báo: Mã xác nhận mã \r\n" + "\r\n" + "Kính gửi quý khách hàng,\r\n" + "\r\n <br>	"
-				+ "Chúng tôi gửi đến quý khách mã xác nhận mới để đảm bảo tính bảo mật cho tài khoản của quý khách. Mã xác nhận này được sử dụng để xác thực và bảo vệ quyền riêng tư của quý khách trong quá trình sử dụng dịch vụ của chúng tôi.\r\n <br>	"
-				+ "\r\n" + "Dưới đây là mã xác nhận code của quý khách:\r\n" + "<br>" + ma + "</br>" + "\r\n"
-				+ "\r\n <br>	"
-				+ "Vui lòng sử dụng mã xác nhận này để tiếp tục các hoạt động và giao dịch trên tài khoản của quý khách. Chúng tôi khuyến nghị quý khách không tiết lộ mã xác nhận  này cho bất kỳ ai khác và không gửi mã này qua email hay tin nhắn điện thoại.\r\n <br>	"
-				+ "\r\n"
-				+ "Nếu quý khách không yêu cầu hoặc không nhớ có bất kỳ hoạt động liên quan đến mã xác nhận này, vui lòng liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi ngay để được hỗ trợ và đảm bảo an toàn cho tài khoản của quý khách.\r\n <br>	"
-				+ "\r\n" + "Xin chân thành cảm ơn quý khách hàng đã sử dụng dịch vụ của chúng tôi.\r\n" + "\r\n <br>"
-				+ "Trân trọng,\r\n" ;
-
+		String thongBao = "Chào bạn,\r\n<br>" +
+				"\r\n" +
+				"Cảm ơn bạn đã đăng ký tài khoản với chúng tôi. Dưới đây là mã OTP (One Time Password) để hoàn tất quá trình đăng ký:\r\n"
+				+
+				"\r\n" +
+				ma + "\r\n" +
+				"\r\n <br>" +
+				"Vui lòng không chia sẻ mã này với bất kỳ ai khác. Điều này giúp đảm bảo an toàn cho tài khoản của bạn. Mã OTP sẽ hết hiệu lực trong vòng 5 phút.\r\n <br>"
+				+
+				"\r\n" +
+				"Nếu bạn không thực hiện bất kỳ yêu cầu nào, vui lòng liên hệ với chúng tôi ngay lập tức.\r\n <br>" +
+				"\r\n" +
+				"Trân trọng,\r\n" +
+				"RinzBook";
 
 		if (confirm.equals(password)) {
 			mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
@@ -115,7 +117,7 @@ public class SignupController {
 			model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
 			return "User/signup";
 		}
-//		}
+		// }
 
 	}
 
@@ -131,7 +133,7 @@ public class SignupController {
 				return "User/confirm";
 			} else {
 				Account item = session.get("account");
-				//item.setCreatedate(new Date());
+				// item.setCreatedate(new Date());
 				model.addAttribute("item", item);
 				dao.save(item);
 				Authority au = new Authority();
@@ -142,7 +144,6 @@ public class SignupController {
 		}
 		return "/security/login";
 	}
-
 
 	@RequestMapping("signin")
 	public String signin() {
