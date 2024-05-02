@@ -8,11 +8,11 @@ public interface AuthorService {
 	
 	List<Author> findAll();
 
-	Author findById(String id);
-
 	Author create(Author author);
 
 	Author update(Author author);
 
-	void delete(String id);
+	void delete(Integer id);
+
+	Author findById(Integer id);
 }

@@ -1,10 +1,8 @@
 package com.poly.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.boot.model.relational.AbstractAuxiliaryDatabaseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +24,7 @@ public class SignupController {
 	@Autowired
 	MailerServiceImpl mailer;
 	@Autowired
-	AccountDAO dao; // làm việc với bảng Account
+	AccountDAO dao;
 	@Autowired
 	SessionService session;
 	@Autowired
@@ -44,10 +42,11 @@ public class SignupController {
 	}
 
 	@RequestMapping("create")
-	public String create(Account account, @RequestParam("email") String email, Model model,
-			@RequestParam("password") String password, @RequestParam("confirm") String confirm,
-			@RequestParam("username") String username) throws IllegalStateException, IOException {
+	public String create(Account account, @RequestParam("email") String email, Model model, @RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
+						 @RequestParam("password") String password, @RequestParam("confirm") String confirm,
+						 @RequestParam("username") String username) throws IllegalStateException, IOException {
 
+		//Bat loi loi dang ki
 		List<Account> all=dao.findAll();
 		for (Account account2 : all) {
 			if(account2.getUsername().equals(username)) {
@@ -62,7 +61,34 @@ public class SignupController {
 			}
 			
 		}
-		
+		if (fullname.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Họ Và Tên");
+			return "User/signup";
+		}
+		if (username.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Tên Đăng Nhập");
+			return "User/signup";
+		}
+		if (email.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Email");
+			return "User/signup";
+		}
+		if (phone.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Số Điện Thoại");
+			return "User/signup";
+		}
+		if (password.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Mật Khẩu ");
+			return "User/signup";
+		}
+
+
+
 
 		Integer ma = (int) mxn;
 
@@ -77,27 +103,27 @@ public class SignupController {
 				+ "Trân trọng,\r\n" + "FBook";
 
 
-			if (confirm.equals(password)) {
-				mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
+		if (confirm.equals(password)) {
+			mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
 
-				session.set("mxn", ma);
-				session.set("account", account);
+			session.set("mxn", ma);
+			session.set("account", account);
 
-				return "User/confirm";
-			} else {
-				model.addAttribute("account", account);
-				model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
-				return "User/signup";
-			}
+			return "User/confirm";
+		} else {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
+			return "User/signup";
+		}
 //		}
 
 	}
 
 	@RequestMapping("confirm")
-	public String Confirm(Model model, @RequestParam("confirm") Integer confirm) {
+	public String Confirm(Model model, @RequestParam(value = "confirm", required = false) Integer confirm) {
 		Integer ma = session.get("mxn");
 		if (confirm == null) {
-			model.addAttribute("error", "Mã Xác Nhận Không Chính Xác!");
+			model.addAttribute("error", "Vui Lòng Không Để Trống Mã Xác Nhận!");
 			return "User/confirm";
 		} else {
 			if (!confirm.equals(ma)) {
@@ -116,6 +142,7 @@ public class SignupController {
 		}
 		return "/security/login";
 	}
+
 
 	@RequestMapping("signin")
 	public String signin() {

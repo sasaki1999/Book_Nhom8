@@ -30,7 +30,7 @@ public class AuthorRestController {
 	}
 
 	@GetMapping("{id}")
-	public Author getOne(@PathVariable("id") String id) {
+	public Author getOne(@PathVariable("id") Integer id) {
 		return authorservice.findById(id);
 	}
 
@@ -45,7 +45,7 @@ public class AuthorRestController {
 	}
 
 	@DeleteMapping("{id}")
-	public void delete(@PathVariable("id") String id) {
+	public void delete(@PathVariable("id") Integer id) {
 		authorservice.delete(id);
 	}
 }

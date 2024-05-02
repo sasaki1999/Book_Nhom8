@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>RegistrationForm_v2 by Colorlib</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>OTP Verification</title>
 
-		<!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="../../signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-		
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="../../signup/css/style.css">
-	</head>
+	<!-- MATERIAL DESIGN ICONIC FONT -->
+	<link rel="stylesheet" href="../../signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
-	<body>
+	<!-- STYLE CSS -->
 
-		<div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
-			<div class="inner">
-				<form th:action="@{/confirm}" method="post">
-					<h3>Vui Lòng Nhập Mã Xác Nhận</h3>
-					
-					<div class="form-wrapper">
-						<label for="">Mã xác nhận</label>
-						<input type="text" name="confirm" class="form-control">
-						<h4>[[${error}]]</h4>
-					</div>
-					<button>Xác nhận</button>
-				</form>
+	<link rel="stylesheet" href="../../css/Confirm_style.css">
+
+</head>
+
+<body>
+<div class="container">
+	<header>
+		<i class="bx bxs-check-shield"></i>
+	</header>
+	<div class="inner">
+		<form th:action="@{/confirm}" method="post">
+			<label>Mã xác nhận</label>
+			<div class="input-field">
+				<input type="text" name="confirm" class="form-control" />
 			</div>
-		</div>
-		
-	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+			<h4 style="color: red">[[${error}]]</h4>
+			<button>Xác nhận</button>
+		</form>
+	</div>
+</div>
+
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

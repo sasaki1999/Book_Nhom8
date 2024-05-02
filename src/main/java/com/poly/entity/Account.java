@@ -53,4 +53,12 @@ public class Account implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	@JsonIgnore
 	List<UserVoucher> userVouchers;
+
+    public boolean isPresent() {
+        return false;
+    }
+
+	public Role get() {
+        return null;
+    }
 }
