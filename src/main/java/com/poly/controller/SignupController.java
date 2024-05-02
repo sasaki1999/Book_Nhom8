@@ -100,7 +100,7 @@ public class SignupController {
 				+ "\r\n"
 				+ "Nếu quý khách không yêu cầu hoặc không nhớ có bất kỳ hoạt động liên quan đến mã xác nhận này, vui lòng liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi ngay để được hỗ trợ và đảm bảo an toàn cho tài khoản của quý khách.\r\n <br>	"
 				+ "\r\n" + "Xin chân thành cảm ơn quý khách hàng đã sử dụng dịch vụ của chúng tôi.\r\n" + "\r\n <br>"
-				+ "Trân trọng,\r\n" + "FBook";
+				+ "Trân trọng,\r\n" ;
 
 
 		if (confirm.equals(password)) {
