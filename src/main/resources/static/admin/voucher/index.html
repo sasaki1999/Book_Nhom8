@@ -7,25 +7,25 @@
 				<div class="iq-card">
 					<div class="iq-card-header d-flex justify-content-between">
 						<div class="iq-header-title">
-							<h4 class="card-title">Thêm mã giảm giá</h4>
+							<h4 class="card-title">Quản lý voucher</h4>
 						</div>
 					</div>
 					<div class="iq-card-body">
 						<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
-								<label>Mã giảm giá:</label> <input type="text"
+								<label>Mã giảm giá: (<strong>*</strong>)</label> <input type="text"
 									class="form-control" ng-model="form.voucherid">
 							</div>
 							<div class="form-group">
-								<label>Tên mã giảm giá:</label> <input type="text"
+								<label>Tên mã giảm giá: (<strong>*</strong>)</label> <input type="text"
 									class="form-control" ng-model="form.name">
 							</div>
 							<div class="form-group">
-								<label>Số tiền giảm:</label> <input type="number"
+								<label>Số tiền giảm: (<strong>*</strong>)</label> <input type="number"
 									class="form-control" ng-model="form.discount">
 							</div>
 							<div class="form-group">
-								<label>Hình ảnh:</label>
+								<label>Hình ảnh: (<strong>*</strong>)</label>
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" id="image"
 										onchange={angular.element(this).scope().imageChanged(this.files)}
@@ -34,12 +34,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Ngày bắt đầu:</label> <input type="date"
+								<label>Ngày bắt đầu: (<strong>*</strong>)</label> <input type="date"
 									class="form-control" ng-model="form.startdate"
 									placeholder="2022-01-01">
 							</div>
 							<div class="form-group">
-								<label>Ngày kết thúc:</label> <input type="date"
+								<label>Ngày kết thúc: (<strong>*</strong>)</label> <input type="date"
 									class="form-control" ng-model="form.enddate">
 							</div>
 
@@ -47,9 +47,9 @@
 								ng-hide="index == -1">
 								<i class="bi bi-person-plus"></i> Thêm
 							</button>
-							<button ng-click="update()" class="btn btn-primary"
+							<button ng-click="update()" class="btn btn-success"
 								ng-show="index == -1">
-								<i class="bi bi-person-add"></i> Cập nhật
+								<i class="bi bi-pencil-square"></i> Cập nhật
 							</button>
 							<button ng-click="delete(form)" class="btn btn-danger"
 								ng-show="index == -1">
@@ -68,7 +68,11 @@
 						<div class="iq-header-title">
 							<h4 class="card-title">Danh sách voucher</h4>
 						</div>
-						
+						<div class="iq-header-title">
+							<label for="searchInput"><i class="ri-search-eye-line"></i>
+								Tìm kiếm:</label> <input type="text" id="searchInput"
+								ng-model="searchText">
+						</div>
 					</div>
 					<div class="iq-card-body">
 						<div class="table-responsive">
@@ -78,7 +82,7 @@
 									<tr>
 										<th style="width: 10%;">Mã giảm giá</th>
 										<th style="width: 25%;">Tên mã giảm giá</th>
-										<th style="width: 10%;">Số tiền giảm</th>
+										<th style="width: 10%;">Số tiền giảm (VNĐ)</th>
 										<th style="width: 15%;">Hình ảnh</th>
 										<th style="width: 15%;">Ngày bắt đầu</th>
 										<th style="width: 15%;">Ngày kết thúc</th>
@@ -86,10 +90,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="item in pager.items">
+									<tr ng-repeat="item in pager.items | filter:searchText">
 										<td>{{item.voucherid}}</td>
 										<td>{{item.name}}</td>
-										<td>{{item.discount}}</td>
+										<td>{{item.discount | number :0}} VNĐ</td>
 										<td><img src="../../../images/voucher/{{item.image}}"
 											width="150px" /></td>
 										<td>{{item.startdate | date:'dd/MM/yyyy'}}</td>
@@ -109,19 +113,19 @@
 					</div>
 				</div>
 				<div class="card-header text-center">
-					<button ng-click="pager.first()" class="btn btn-danger">
-						<i class="fas fa-arrow-to-left"></i>
+					<button ng-click="pager.first()" class="btn btn-primary">
+						<i class="ri-skip-back-fill"></i>
 					</button>
 					<button ng-click="pager.prev()" class="btn btn-primary">
-						<i class="fas fa-arrow-left"></i>
+						<i class="ri-rewind-fill"></i>
 					</button>
-					<button class="btn btn-success">{{pager.page + 1}} of
+					<button class="btn btn-success">{{pager.page + 1}} /
 						{{pager.count?pager.count:'1'}}</button>
 					<button ng-click="pager.next()" class="btn btn-primary">
-						<i class="fas fa-arrow-right"></i>
+						<i class="ri-speed-fill"></i>
 					</button>
-					<button ng-click="pager.last()" class="btn btn-danger">
-						<i class="fas fa-arrow-to-right"></i>
+					<button ng-click="pager.last()" class="btn btn-primary">
+						<i class="ri-skip-forward-fill"></i>
 					</button>
 				</div>
 
