@@ -1,135 +1,124 @@
-app.controller("authority-ctrl", function ($scope, $http, $location) {
-    var url = "/rest/roles";
-    var url1 = "/rest/authorities";
-    var url2 = "/rest/accounts?admin=false";
-    var url3 = "/rest/authorities?admin=false";
-    $scope.roles = [];
-    $scope.admins = [];
-    $scope.authorities = [];
+app.controller("authority-ctrl", function($scope, $http, $location) {
+	var url = "/rest/roles";
+	var url1 = "/rest/authorities";
+	var url2 = "/rest/accounts?admin=false";
+	var url3 = "/rest/authorities?admin=false";
+	$scope.roles = [];
+	$scope.admins = [];
+	$scope.authorities = [];
 
-    var sweetalert = function (text) {
-        Swal.fire({
-            icon: "success",
-            title: text,
-            showConfirmButton: false,
-            timer: 2000,
-        });
-    }
+	var sweetalert = function(text) {
+		Swal.fire({
+			icon: "success",
+			title: text,
+			showConfirmButton: false,
+			timer: 2000,
+		});
+	}
 
-    $scope.initialize = function () {
-        //load roles
-        $http.get(url).then(resp => {
-            $scope.roles = resp.data;
-        });
+	$scope.initialize = function() {
+		//load roles
+		$http.get(url).then(resp => {
+			$scope.roles = resp.data;
+		});
 
-        $http.get(url2).then(resp => {
-            $scope.admins = resp.data;
-        });
+		$http.get(url2).then(resp => {
+			$scope.admins = resp.data;
+		});
 
-        $http.get(url3).then(resp => {
-            $scope.authorities = resp.data;
-        });
-    }
+		$http.get(url3).then(resp => {
+			$scope.authorities = resp.data;
+		});
+	}
 
-    $scope.authority_of = function (acc, role) {
-        if ($scope.authorities) {
-            return $scope.authorities.find(ur => ur.account.username == acc.username && ur.role.id == role.id);
-        }
-    }
+	$scope.authority_of = function(acc, role) {
+		if ($scope.authorities) {
+			return $scope.authorities.find(ur => ur.account.username == acc.username && ur.role.id == role.id);
+		}
+	}
 
-    $scope.authority_changed = function (acc, role) {
-        var authority = $scope.authority_of(acc, role);
-        if (authority) {
-            $scope.revoke_authority(authority); //da cap quyen => thu hoi quyen(xoa)
-        }
-        else {
-            authority = { account: acc, role: role };
-            $scope.grant_authority(authority); //chua duoc cap quyen => cap quyen(them moi)
-        }
-    }
+	$scope.authority_changed = function(acc, role) {
+		var authority = $scope.authority_of(acc, role);
+		if (authority) {
+			$scope.revoke_authority(authority); //da cap quyen => thu hoi quyen(xoa)
+		}
+		else {
+			authority = { account: acc, role: role };
+			$scope.grant_authority(authority); //chua duoc cap quyen => cap quyen(them moi)
+		}
+	}
 
-    //them moi authority
-    $scope.grant_authority = function (authority) {
-        $http.post(`${url1}`, authority).then(resp => {
-            $scope.authorities.push(resp.data);
-            Swal.fire({
-				type: 'success',
-				title: 'Cấp quyền sử dụng thành công',
-				text: 'Quyền sử dụng đã được thêm',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
-        }).catch(error => {
-            Swal.fire({
-				type: 'error',
-				title: 'Lỗi cấp quyền sử dụng',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-            console.log("Error: ", error);
-        });
-    }
+	
+	
+	//them moi authority
+	$scope.grant_authority = function(authority) {
+		$http.post(`${url1}`, authority).then(resp => {
+			$scope.authorities.push(resp.data);
+			//sweetalert("Cấp quyền sử dụng thành công!");
+			Swal.fire("Thành công", "Cấp quyền sử dụng thành công !", "success");
+		}).catch(error => {
+			//sweetalert("Cấp quyền sử dụng thất bại !");
+			Swal.fire("Lỗi", "Cấp quyền sử dụng thất bại !", "error");
+			console.log("Lỗi: ", error);
+		});
+	}
+	
+	$scope.set = function(acc, role) {
+		$http.get(`/rest/authorities/${acc.username}/${role.id}`).then(resp => {
+			sweetalert("Thay đổi quyền thành công!");
+			$scope.initialize();
+		}).catch(error => {
+			sweetalert("Thay đổi quyền thất bại!");
+			console.log("Error: ", error);
+		});
+	}
 
-    //xoa authority
-    $scope.revoke_authority = function (authority) {
-        $http.delete(`${url1}/${authority.id}`).then(resp => {
-            var index = $scope.authorities.findIndex(a => a.id == authority.id);
-            $scope.authorities.splice(index, 1);
-            Swal.fire({
-				type: 'success',
-				title: 'Thu hồi quyền sử dụng thành công',
-				text: 'Quyền sử dụng đã được thu hồi',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
-        }).catch(error => {
-            Swal.fire({
-				type: 'error',
-				title: 'Lỗi thu hồi quyền sử dụng',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-            console.log("Error: ", error);
-        });
-    }
+	//xoa authority
+	$scope.revoke_authority = function(authority) {
+		$http.delete(`${url1}/${authority.id}`).then(resp => {
+			var index = $scope.authorities.findIndex(a => a.id == authority.id);
+			$scope.authorities.splice(index, 1);
+			Swal.fire("Thành công", "Thu hồi quyền sử dụng thành công !", "success");
+			//sweetalert("Thu hồi quyền sử dụng thành công !");
+		}).catch(error => {
+			Swal.fire("Lỗi", "Thu hồi quyền sử dụng thất bại !", "error");
+			//sweetalert("Thu hồi quyền sử dụng thất bại !");
+			console.log("Lỗi: ", error);
+		});
+	}
 
-    $scope.initialize();
+	$scope.initialize();
 
-    //phan trang
-    $scope.pager = {
-        page: 0,
-        size: 10,
-        get admins() {
-            var start = this.page * this.size;
-            return $scope.admins.slice(start, start + this.size);
-        },
-        get count() {
-            return Math.ceil(1.0 * $scope.admins.length / this.size)
-        },
-        first() {
-            this.page = 0;
-        },
-        prev() {
-            this.page--;
-            if (this.page < 0) {
-                this.last();
-            }
-        },
-        next() {
-            this.page++;
-            if (this.page >= this.count) {
-                this.first();
-            }
-        },
-        last() {
-            this.page = this.count - 1;
-        }
-    }
+
+	//phan trang
+	$scope.pager = {
+		page: 0,
+		size: 5,
+		get admins() {
+			var start = this.page * this.size;
+			return $scope.admins.slice(start, start + this.size);
+		},
+		get count() {
+			return Math.ceil(1.0 * $scope.admins.length / this.size)
+		},
+		first() {
+			this.page = 0;
+		},
+		prev() {
+			this.page--;
+			if (this.page < 0) {
+				this.last();
+			}
+		},
+		next() {
+			this.page++;
+			if (this.page >= this.count) {
+				this.first();
+			}
+		},
+		last() {
+			this.page = this.count - 1;
+		}
+	}
 
 });

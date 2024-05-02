@@ -4,7 +4,7 @@ app.controller("account-ctrl", function ($scope, $http) {
 	$scope.form = {};
 	$scope.roles = {};
 	
-	  
+	
 	
 	$scope.initialize = function () {
 		$http.get('/rest/accounts').then(function (response) {

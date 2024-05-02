@@ -7,33 +7,34 @@
 				<div class="iq-card">
 					<div class="iq-card-header d-flex justify-content-between">
 						<div class="iq-header-title">
-							<h4 class="card-title">Thêm mã sản phẩm giảm giá</h4>
+							<h4 class="card-title">Chương trình giảm giá</h4>
 						</div>
 					</div>
 					<div class="iq-card-body">
-						<form method="post" >
+						<form method="post">
 							<div class="form-group">
-								<label>Mã giảm giá:</label> <input readonly="readonly" type="text"
-									class="form-control" ng-model="form.id">
-							</div>
-
-							<div class="form-group">
-								<label>Mã sản phẩm và tên:</label> <select  class="form-control"
+								<label>Mã sản phẩm và tên: (<strong>*</strong>)</label> <select class="form-control"
 									id="exampleFormControlSelect1" ng-model="form.book.id">
-									<option  ng-repeat="c in product" ng-value="c.id">{{c.id}}
-										: {{c.name}}</option>
+									<option ng-repeat="c in product" ng-value="c.id"
+										data-name="{{c.name}}">{{c.id}}:{{c.name}}</option>
 								</select>
+
+								<!--  <select class="form-control" id="exampleFormControlSelect1"
+									ng-model="form.book.id">
+									<option ng-repeat="c in product" ng-value="c.id">{{c.id}}
+										: {{c.name}}</option>
+								</select> -->
 							</div>
 							<div class="form-group">
-								<label>Phần trăm giảm giá:</label> <input type="number"
+								<label>Phần trăm giảm giá %: (<strong>*</strong>)</label> <input type="number"
 									class="form-control" ng-model="form.discount">
 							</div>
 							<div class="form-group">
-								<label>Ngày bắt đầu:</label> <input type="date"
+								<label>Ngày bắt đầu: (<strong>*</strong>)</label> <input type="date"
 									class="form-control" ng-model="form.startdate">
 							</div>
 							<div class="form-group">
-								<label>Ngày kết thúc:</label> <input type="date"
+								<label>Ngày kết thúc: (<strong>*</strong>)</label> <input type="date"
 									class="form-control" ng-model="form.enddate">
 							</div>
 
@@ -41,9 +42,9 @@
 								ng-hide="index == -1">
 								<i class="bi bi-person-plus"></i> Thêm
 							</button>
-							<button ng-click="update()" class="btn btn-primary"
+							<button ng-click="update()" class="btn btn-success"
 								ng-show="index == -1">
-								<i class="bi bi-person-add"></i> Cập nhật
+								<i class="bi bi-pencil-square"></i> Cập nhật
 							</button>
 							<button ng-click="delete(form)" class="btn btn-danger"
 								ng-show="index == -1">
@@ -62,7 +63,10 @@
 						<div class="iq-header-title">
 							<h4 class="card-title">Danh sách sản phẩm giảm giá</h4>
 						</div>
-
+						<div class="iq-header-title">
+							<label for="searchInput"><i class="ri-search-eye-line"></i>Tìm
+								kiếm:</label> <input type="text" id="searchInput" ng-model="searchText">
+						</div>
 					</div>
 					<div class="iq-card-body">
 						<div class="table-responsive">
@@ -72,7 +76,7 @@
 									<tr>
 										<th>Mã giảm giá</th>
 										<th>Mã sản phẩm</th>
-										<th>Phần trăm giảm giá</th>
+										<th>Phần trăm giảm giá (%)</th>
 										<th>Tên sản phẩm</th>
 										<th>Ngày bắt đầu</th>
 										<th>Ngày kết thúc</th>
@@ -81,8 +85,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="item in pager.items">
-										<td >{{item.id}}</td>
+									<tr ng-repeat="item in pager.items | filter:searchText">
+										<td>{{item.id}}</td>
 										<td>{{item.book.id}}</td>
 										<td>{{item.discount}}</td>
 										<td>{{item.book.name}}</td>
@@ -103,19 +107,19 @@
 					</div>
 				</div>
 				<div class="card-header text-center">
-					<button ng-click="pager.first()" class="btn btn-danger">
-						<i class="fas fa-arrow-to-left"></i>
+					<button ng-click="pager.first()" class="btn btn-primary">
+						<i class="ri-skip-back-fill"></i>
 					</button>
 					<button ng-click="pager.prev()" class="btn btn-primary">
-						<i class="fas fa-arrow-left"></i>
+						<i class="ri-rewind-fill"></i>
 					</button>
-					<button class="btn btn-success">{{pager.page + 1}} of
+					<button class="btn btn-success">{{pager.page + 1}} /
 						{{pager.count?pager.count:'1'}}</button>
 					<button ng-click="pager.next()" class="btn btn-primary">
-						<i class="fas fa-arrow-right"></i>
+						<i class="ri-speed-fill"></i>
 					</button>
-					<button ng-click="pager.last()" class="btn btn-danger">
-						<i class="fas fa-arrow-to-right"></i>
+					<button ng-click="pager.last()" class="btn btn-primary">
+						<i class="ri-skip-forward-fill"></i>
 					</button>
 				</div>
 
