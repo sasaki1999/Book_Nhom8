@@ -153,7 +153,13 @@
 										<p class="mb-0">{{item.address}}</p>
 									</td>
 									<td>{{item.voucher.voucherid}}</td>
-									<td>{{item.status ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td>
+									<!-- <td>{{item.status ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td> -->
+									<td>
+										<span ng-if="item.orderstatus === 'Đã hủy đơn'">Đã hủy đơn</span>
+										<span ng-if="item.orderstatus === 'Chờ xác nhận'">Chờ xác nhận</span>
+										<span ng-if="item.orderstatus === 'Đang giao hàng'">Đang giao hàng</span>
+											<span ng-if="item.orderstatus === 'Đã giao hàng'">Hoàn tất</span>
+									</td>
 									<td><a href="javascript:void(0)" ng-click="showOrderDetail(item.id)">Chi
 											tiết</a></td>
 								</tr>
