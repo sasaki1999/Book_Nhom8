@@ -81,11 +81,13 @@ public class ProductRestController {
 	// new
 	@PostMapping()
 	public Book create(@RequestBody Book book) {
+		book.setStatus(true);
 		return productService.create(book);
 	}
 
 	@PutMapping("{id}")
 	public Book update(@PathVariable("id") Integer id, @RequestBody Book book) {
+		book.setStatus(true);
 		return productService.update(book);
 	}
 

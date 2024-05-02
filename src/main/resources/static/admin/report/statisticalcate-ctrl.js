@@ -40,6 +40,57 @@ app.controller('statisticalcate-ctrl', function($scope, $http) {
             });
     };
 
-    // Call loadProducts to initialize data
-    $scope.loadProducts();
+    $scope.getSumCatesByMonth = function(year) {
+		return new Promise(function(resolve, reject) {
+
+			var cate = [];
+			var cateID = [];
+
+			$http.get('/sumCategory', {
+				params: {
+					year: year
+				}
+			}).then(function(resp) {
+				var rep = resp.data;
+				console.log(rep)
+				for (var i = 0; i < rep.length; i++) {
+					cate.push(rep[i][1]);    // Pushes the string at index 0 to 'cate'
+					cateID.push(rep[i][0]);  // Pushes the number at index 1 to 'cateID'
+				}
+				resolve({ cate: cate, cateID: cateID }); // Trả về một đối tượng chứa cả hai mảng
+				console.log(cate, cateID);
+			}, function(error) {
+
+				reject(error);
+			});
+		});
+	};
+
+	$scope.chart = function() {
+		$scope.getSumCatesByMonth(2025).then(function(data) {
+			var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+			console.log(data)
+			var mytotalIncomeChart = new Chart(totalIncomeChart, {
+				type: 'bar',
+				data: {
+					labels: data.cateID, // Sử dụng mảng cateID làm nhãn
+					datasets: [{
+						label: "Đơn hàng/Tháng",
+						backgroundColor: '#272eff',
+						borderColor: 'rgb(23, 125, 255)',
+						data: data.cate,
+					}],
+				},
+				options: {
+					// Các tùy chọn khác của biểu đồ
+				}
+			});
+		}).catch(function(error) {
+			console.error('Error:', error);
+		});
+	};
+
+	// Call loadProducts to initialize data	$scope.chart();
+	$scope.loadProducts();
+	$scope.chart();
 });
