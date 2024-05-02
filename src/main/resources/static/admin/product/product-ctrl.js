@@ -38,40 +38,25 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	//Hiển thị lên form
 	$scope.edit = function(item) {
-
+		$scope.isDisabled = true;
+		$scope.imgaedefault = false;
 		$scope.form = angular.copy(item)
 		$(".nav-tabs a:eq(0)").tab('show')
 	}
 
-
-
-
 	//Thêm sản phẩm mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form);
+		console.log(item);
 		$http.post(`/rest/products`, item).then(resp => {
 			resp.data.createDate = new Date(resp.data.createDate)
 			$scope.items.push(resp.data);
 			$scope.initialize();
 			$scope.reset();
-			Swal.fire({
-				type: 'success',
-				title: 'Thêm sách thành công',
-				text: 'Sách mới đã được thêm',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+			Swal.fire("Thành công", "Thêm sản phẩm mới thành công !", "success");
 		}).catch(error => {
-			Swal.fire({
-				type: 'error',
-				title: 'Lỗi thêm sách',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Thêm sản phẩm mới thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -82,24 +67,10 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			$scope.initialize();
-			Swal.fire({
-				type: 'success',
-				title: 'Cập nhật sách thành công',
-				text: 'Sách đã được cập nhật',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+			Swal.fire("Thành công", "Cập nhật sản phẩm thành công !", "success");
 		}).catch(error => {
-			Swal.fire({
-				type: 'error',
-				title: 'Lỗi cập nhật sách',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Cập nhật sản phẩm thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -109,42 +80,15 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.reset();
-			Swal.fire({
-				type: 'success',
-				title: 'Xóa sách thành công',
-				text: 'Sách đã được xóa',
-				icon: "success",
-				showConfirmButton: false,
-				timer: 2000
-			})
+			Swal.fire("Thành công", "Xóa sản phẩm thành công !", "success");
 		}).catch(error => {
-			Swal.fire({
-				type: 'error',
-				title: 'Lỗi xóa sách',
-				text: error,
-				icon: "error",
-				showConfirmButton: false,
-				timer: 2000
-			})
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Xóa sản phẩm thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
-	//Upload hình ảnh
-	//	$scope.imageChanged = function(files) {
-	//		var data = new FormData();
-	//		data.append('file', files[0]);
-	//		$http.post('/rest/upload/book', data, {
-	//			transformRequest: angular.identity,
-	//			headers: { 'Content-Type': undefined }
-	//		}).then(resp => {
-	//			$scope.form.image = resp.data.name;
-	//		}).catch(error => {
-	//			alert("Lỗi upload hình ảnh");
-	//			console.log("Error", error);
-	//		})
-	//	}
-	$scope.imageChanged = function(files) {
+
+/*	$scope.imageChanged = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
 		$http.post('/rest/upload/book', data, {
@@ -158,15 +102,44 @@ app.controller("product-ctrl", function($scope, $http) {
 				$scope.form.imageName = null;
 			}
 		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Lỗi upload hình ảnh !", "error");
+			console.log("Lỗi", error);
+		})
+	}*/
+	
+	$scope.imgaedefault = true;
+	$scope.imageChanged = function(files) {
+		$scope.imgaedefault = false;
+		var data = new FormData();
+		data.append('file', files[0]);
+		$http.post('/rest/upload/book', data, {
+			transformRequest: angular.identity,
+			headers: {
+				'Content-Type': undefined
+			}
+		}).then(resp => {
+			$scope.form.image = resp.data.name;
+			/*Swal.fire({
+				type: 'success',
+				title: 'Thêm ảnh thành công',
+				text: '',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})*/
+		}).catch(error => {
+			Swal.fire({
+				type: 'error',
+				title: 'Lỗi thêm ảnh',
+				text: "Lỗi",
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
+			console.log("Lỗi", error);
 		})
 	}
-
-
-
-
-
+	
 
 	//addnhieuanhsanpham
 	$scope.editanh = function(item) {
@@ -191,10 +164,10 @@ app.controller("product-ctrl", function($scope, $http) {
 		$http.post(`/rest/images`, image).then(resp => {
 			$scope.reset();
 			$scope.editanh(image.book.id)
-			Swal.fire("Success", "Thêm ảnh sách thành công!", "success");
+			Swal.fire("Thành công", "Thêm ảnh hình thành công !", "success");
 		}).catch(error => {
-			Swal.fire("Error", "Thêm ảnh sách thất bại!", "error");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Thêm ảnh hình thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -204,50 +177,57 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			$scope.editanh(item.book.id)
-			Swal.fire("Success", "Cập nhật thành công!", "success");
+			Swal.fire("Thành công", "Cập nhật hình thành công !", "success");
 		}).catch(error => {
-			Swal.fire("Error", "Cập nhật thất bại!", "error");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Cập nhật hình thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
 
-
-
-	//Xóa sản phẩm
+	//Xóa hình
 	$scope.deleteimage = function(item) {
 		$http.delete(`/rest/images/${item.id}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items.splice(index, 1);
 			$scope.editanh(item.book.id)
 			$scope.reset();
-			alert("Xóa sản phẩm thành công")
+			Swal.fire("Thành công", "Xóa hình thành công !", "success");
+			//alert("Xóa hình thành công")
 		}).catch(error => {
-			alert("Lỗi xóa sản phẩm");
-			console.log("Error", error);
+			//alert("Lỗi xóa sản phẩm");
+			Swal.fire("Lỗi", "Xóa hình thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
-
-
+	var url = `/rest/products/changepanels`;
+		$http.get(url).then(resp => {
+			$scope.changePanels = resp.data;
+			$scope.nav = $scope.changePanels[0]||null;
+			$scope.qc1 = $scope.changePanels[1]||null;
+			$scope.qc2 = $scope.changePanels[2]||null;
+			$scope.bn1 = $scope.changePanels[3]||null;
+			$scope.bn2 = $scope.changePanels[4]||null;
+			console.log($scope.changePanels);
+		});
+	
 	//Upload hình ảnh
 	$scope.imageChangedadd = function(files) {
 		var data = new FormData();
 		data.append('file', files[0]);
-		$http.post('/rest/upload/book', data, {
+		$http.post('/rest/upload/bookdec', data, {
 			transformRequest: angular.identity,
 			headers: { 'Content-Type': undefined }
 		}).then(resp => {
-			$scope.form.image = resp.data.name;
+			$scope.image.link = resp.data.name;
 		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Lỗi tải hình lên thất bại !", "error");
+			//alert("Lỗi upload hình ảnh");
+			console.log("Lỗi", error);
 		})
 	}
-
-
-
-
+	
 	//ảnh đọc thử
 
 	$scope.editproofreads = function(item) {
@@ -277,8 +257,9 @@ app.controller("product-ctrl", function($scope, $http) {
 		}).then(resp => {
 			$scope.proofreads.images = resp.data.name;
 		}).catch(error => {
-			alert("Lỗi upload hình ảnh");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Lỗi tải hình lên thất bại !", "error");
+			//alert("Lỗi upload hình ảnh");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -287,10 +268,10 @@ app.controller("product-ctrl", function($scope, $http) {
 		$http.post(`/rest/proofread`, proofreads).then(resp => {
 			$scope.reset();
 			$scope.editproofreads(proofreads.book.id)
-			Swal.fire("Success", "Thêm ảnh sách thành công!", "success");
+			Swal.fire("Thành công", "Thêm hình đọc thử thành công !", "success");
 		}).catch(error => {
-			Swal.fire("Error", "Thêm ảnh sách thất bại!", "error");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Thêm hình đọc thử thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -300,10 +281,12 @@ app.controller("product-ctrl", function($scope, $http) {
 			$scope.items.splice(index, 1);
 			$scope.editproofreads(item.book.id);
 			$scope.reset();
-			alert("Xóa sản phẩm thành công")
+			Swal.fire("Thành công", "Xóa hình đọc thử thành công !", "success");
+			//alert("Xóa sản phẩm thành công")
 		}).catch(error => {
-			alert("Lỗi xóa sản phẩm");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Xóa hình đọc thử thất bại !", "error");
+			//alert("Lỗi xóa sản phẩm");
+			console.log("Lỗi", error);
 		})
 	}
 
@@ -313,56 +296,25 @@ app.controller("product-ctrl", function($scope, $http) {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
 			$scope.editproofreads(item.book.id);
-			Swal.fire("Success", "Cập nhật thành công!", "success");
+			Swal.fire("Thành công", "Cập nhật hình đọc thử thành công !", "success");
 		}).catch(error => {
-			Swal.fire("Error", "Cập nhật thất bại!", "error");
-			console.log("Error", error);
+			Swal.fire("Lỗi", "Cập nhật hình đọc thử thất bại !", "error");
+			console.log("Lỗi", error);
 		})
 	}
 
-
-
-
-	//	$scope.upload = function(files) {
-	//		var proofreads = new FormData();
-	//		for (var i = 0; i < files.length; i++) {
-	//			proofreads.append("files", files[i]);
-	//			
-	//		}
-	//		$http.post("/rest/files/proofread", proofreads, {			
-	//			transformRequest: angular.identity,
-	//			headers: { 'Content-Type': undefined }
-	//			
-	//		}).then(resp => {
-	//			$scope.filenames.push(...resp.data);
-	//			alert("Ok")
-	//		}).catch(error => {
-	//			alert("aLỗiaa"),
-	//			console.log("Error", error);
-	//		});
-	//
-	//
-	//	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//sap xep 
+	$scope.initialize = function () {
+        // Load authors and sort them by ID in ascending order
+        $http.get(url).then(resp => {
+            $scope.items = resp.data.sort((a, b) => a.id - b.id);
+        });
+    }
+    
 	//phân trang
 	$scope.pager = {
 		page: 0,
-		size: 6,
+		size: 5,
 		get items() {
 			var start = this.page * this.size;
 			return $scope.items.slice(start, start + this.size);
