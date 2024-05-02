@@ -39,9 +39,23 @@ app.controller("category-ctrl", function ($scope, $http) {
         $http.post(`${url}`, item).then(resp => {
             $scope.items.push(resp.data);
             $scope.reset();
-            sweetalert("Thêm mới thành công!");
+            Swal.fire({
+				type: 'success',
+				title: 'Thêm danh mục thành công',
+				text: 'Danh mục mới đã được thêm',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
         }).catch(error => {
-            sweetalert("Lỗi thêm mới danh mục!");
+            Swal.fire({
+				type: 'error',
+				title: 'Lỗi thêm danh mục',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
             console.log("Error", error);
         });
     }
@@ -53,9 +67,23 @@ app.controller("category-ctrl", function ($scope, $http) {
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items[index] = item;
             $scope.reset();
-            sweetalert("Cập nhật danh mục thành công!");
+            Swal.fire({
+				type: 'success',
+				title: 'Cập nhật danh mục thành công',
+				text: 'Danh mục đã được cập nhật',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
         }).catch(error => {
-            sweetalert("Lỗi cập nhật danh mục!");
+            Swal.fire({
+				type: 'error',
+				title: 'Lỗi cập nhật danh mục',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
             console.log("Error", error);
         });
     }
@@ -66,9 +94,23 @@ app.controller("category-ctrl", function ($scope, $http) {
             var index = $scope.items.findIndex(p => p.id == item.id);
             $scope.items.splice(index, 1);
             $scope.reset();
-            sweetalert("Xóa danh mục thành công!");
+            Swal.fire({
+				type: 'success',
+				title: 'Xóa danh mục thành công',
+				text: 'Danh mục đã được xóa',
+				icon: "success",
+				showConfirmButton: false,
+				timer: 2000
+			})
         }).catch(error => {
-            sweetalert("Lỗi xóa danh mục!");
+            Swal.fire({
+				type: 'error',
+				title: 'Lỗi xóa danh mục',
+				text: error,
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000
+			})
             console.log("Error", error);
         });
     }

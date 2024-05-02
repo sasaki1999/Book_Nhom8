@@ -1402,7 +1402,7 @@ app.controller("ctrl", function($scope, $http, $interval) {
 
 	$scope.pager = {
 		page: 0,
-		size: 12,
+		size: 9,
 		get products() {
 			var start = this.page * this.size;
 			return $scope.products.slice(start, start + this.size);

@@ -52,18 +52,14 @@ public class SignupController {
 			if(account2.getUsername().equals(username)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Tên đăng nhập đã được sử dụng ");
-				return "User/signup";
+				return "User/signup";			
 			}
 			if(account2.getEmail().equals(email)) {
 				model.addAttribute("account", account);
 				model.addAttribute("message", "Email đã được sử dụng ");
-				return "User/signup";
+				return "User/signup";		
 			}
-			if(account2.getPhone().equals(phone)) {
-				model.addAttribute("account", account);
-				model.addAttribute("message", "Số điện thoại đã được sử dụng ");
-				return "User/signup";
-			}
+			
 		}
 		if (fullname.isEmpty()) {
 			model.addAttribute("account", account);
