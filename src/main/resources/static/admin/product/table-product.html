@@ -7,6 +7,10 @@
 				<div class="iq-header-title">
 					<h4 class="card-title">Danh sách Sách hiện có</h4>
 				</div>
+				<div class="iq-header-title">
+					<label for="searchInput"><i class="ri-search-eye-line"></i>Tìm
+						kiếm:</label> <input type="text" id="searchInput" ng-model="searchText">
+				</div>
 			</div>
 			<div class="iq-card-body">
 				<div class="table-responsive">
@@ -27,7 +31,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="item in pager.items">
+							<tr ng-repeat="item in pager.items | filter:searchText">
 								<td>{{item.id}}</td>
 								<td><img src="../../../images/book/{{item.image}}"
 									width="70px"></td>
