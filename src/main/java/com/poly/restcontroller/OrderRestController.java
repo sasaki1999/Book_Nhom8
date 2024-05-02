@@ -157,6 +157,22 @@ public class OrderRestController {
 		bill.setOrderstatus("Đã hủy đơn");
 		return billDao.save(bill);
 	}
+	@GetMapping("/yes/{id}")
+	public Bill yes(@PathVariable("id") Long id) {
+		Bill bill = billDao.findById(id).get();
+		System.out.println("id don hang" +id);
+		bill.setOrderstatus("Đang giao hàng");
+		return billDao.save(bill);
+	}
+
+	@GetMapping("/no/{id}")
+	public Bill no(@PathVariable("id") Long id) {
+		Bill bill = billDao.findById(id).get();
+		System.out.println("id don hang" +id);
+		bill.setOrderstatus("Đã giao hàng");
+		return billDao.save(bill);
+	}
+
 	
 	@GetMapping("status/{username}")
 	public List<Bill> findbystatus(@PathVariable("username") String username) {

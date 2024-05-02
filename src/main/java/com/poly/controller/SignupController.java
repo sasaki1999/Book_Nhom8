@@ -42,10 +42,11 @@ public class SignupController {
 	}
 
 	@RequestMapping("create")
-	public String create(Account account, @RequestParam("email") String email, Model model,
-			@RequestParam("password") String password, @RequestParam("confirm") String confirm,
-			@RequestParam("username") String username) throws IllegalStateException, IOException {
+	public String create(Account account, @RequestParam("email") String email, Model model, @RequestParam("phone") String phone, @RequestParam("fullname") String fullname,
+						 @RequestParam("password") String password, @RequestParam("confirm") String confirm,
+						 @RequestParam("username") String username) throws IllegalStateException, IOException {
 
+		//Bat loi loi dang ki
 		List<Account> all=dao.findAll();
 		for (Account account2 : all) {
 			if(account2.getUsername().equals(username)) {
@@ -60,7 +61,34 @@ public class SignupController {
 			}
 			
 		}
-		
+		if (fullname.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Họ Và Tên");
+			return "User/signup";
+		}
+		if (username.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Tên Đăng Nhập");
+			return "User/signup";
+		}
+		if (email.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Email");
+			return "User/signup";
+		}
+		if (phone.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Số Điện Thoại");
+			return "User/signup";
+		}
+		if (password.isEmpty()) {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Vui lòng không bỏ trống Mật Khẩu ");
+			return "User/signup";
+		}
+
+
+
 
 		Integer ma = (int) mxn;
 
@@ -72,30 +100,30 @@ public class SignupController {
 				+ "\r\n"
 				+ "Nếu quý khách không yêu cầu hoặc không nhớ có bất kỳ hoạt động liên quan đến mã xác nhận này, vui lòng liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi ngay để được hỗ trợ và đảm bảo an toàn cho tài khoản của quý khách.\r\n <br>	"
 				+ "\r\n" + "Xin chân thành cảm ơn quý khách hàng đã sử dụng dịch vụ của chúng tôi.\r\n" + "\r\n <br>"
-				+ "Trân trọng,\r\n" + "FBook";
+				+ "Trân trọng,\r\n" ;
 
 
-			if (confirm.equals(password)) {
-				mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
+		if (confirm.equals(password)) {
+			mailer.send(email, "YÊU CẦU MÃ XÁC NHẬN TỪ NGƯỜI DÙNG!", thongBao);
 
-				session.set("mxn", ma);
-				session.set("account", account);
+			session.set("mxn", ma);
+			session.set("account", account);
 
-				return "User/confirm";
-			} else {
-				model.addAttribute("account", account);
-				model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
-				return "User/signup";
-			}
+			return "User/confirm";
+		} else {
+			model.addAttribute("account", account);
+			model.addAttribute("message", "Xác nhận mật khẩu không chính xác");
+			return "User/signup";
+		}
 //		}
 
 	}
 
 	@RequestMapping("confirm")
-	public String Confirm(Model model, @RequestParam("confirm") Integer confirm) {
+	public String Confirm(Model model, @RequestParam(value = "confirm", required = false) Integer confirm) {
 		Integer ma = session.get("mxn");
 		if (confirm == null) {
-			model.addAttribute("error", "Mã Xác Nhận Không Chính Xác!");
+			model.addAttribute("error", "Vui Lòng Không Để Trống Mã Xác Nhận!");
 			return "User/confirm";
 		} else {
 			if (!confirm.equals(ma)) {
@@ -114,6 +142,7 @@ public class SignupController {
 		}
 		return "/security/login";
 	}
+
 
 	@RequestMapping("signin")
 	public String signin() {
