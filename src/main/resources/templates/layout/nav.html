@@ -5,87 +5,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.fbstore-text {
-	font-size: 30px;
-	font-weight: bold;
-	white-space: nowrap;
-	overflow: hidden;
-	border-right: .10em solid red;
-	/* Tạo hiệu ứng dấu nháy */
-	animation: typing 2s steps(20, end) infinite;
-	color: red;
-	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
-	/* Thêm hiệu ứng đổ bóng */
-}
-
-@keyframes typing {from { width:0;
-	
-}
-
-to {
-	width: 100%;
-}
-}
 </style>
 </head>
 
 <body>
 	<!-- TOP Nav Bar -->
 	<div class="iq-top-navbar">
-		<div class="" style="padding-left: -15px">
-			<img alt="" src="../../images/noel1.gif" width="100%">
-		</div>
-
-		<div class=""
-			style="padding-left: -15px; height: 40px; background: #B22D28; color: white">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto navbar-list">
-						<li class=" nav-icon"><a href="/"
-							class="search-toggle iq-waves-effect rounded"
-							style="font-size: 13px;"> <i class="ri-home-4-line"></i> <span></span>Trang
-								chủ
-						</a></li>
-						<li class=" nav-icon"><a href="/chitetsukien"
-							class="search-toggle iq-waves-effect rounded"
-							style="font-size: 13px;"> <i class="ri-todo-line"></i> <span></span>Tin
-								Tức
-						</a></li>
-						<li class=" nav-icon"><a href="/gioithieu"
-							class="search-toggle iq-waves-effect rounded"
-							style="font-size: 13px;"> <i class="ri-bookmark-2-line"></i> <span></span>Giới Thiệu
-								
-						</a></li>
-						<li class=" nav-icon"><a href="/khuyenmai"
-							class="search-toggle iq-waves-effect rounded"
-							style="font-size: 13px;"> <i class="ri-percent-line"></i>
-								<span></span>Ưu Đãi & Tiện Ích
-						</a></li>
-						<li class=" nav-icon" style="padding-right: 600px"><a href="#"
-							class="search-toggle iq-waves-effec rounded"
-							style="font-size: 13px;"> <i class="ri-notification-2-line"></i>
-								<span></span>Kiểm Tra Đơn Hàng
-						</a></li>
-						<li class=" nav-icon text-right"><a href="#"
-							class="search-toggle iq-waves-effec rounded"
-							style="font-size: 15px;"><i class="fas fa-phone pe-2"></i> (+84) 388 490 985
-						</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-
-		<div class="iq-navbar-custom">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="navbar-breadcrumb text-container">
-					<div class="fbstore-text">
-						<a href="/"> F P S T O R E. . . . . .</a>
-					</div>
+		<img src="../../images/Header_1263x60.png" style="width: 100%">
+		<div class="iq-navbar-custom" style="background: #659DBD; height: 100px">
+			<nav class="navbar navbar-expand-lg navbar-light" style="padding: 0px 20px">
+				<div class="navbar-breadcrumb text-container" style="padding: 0px">
+					<a href="/" >
+						<img style="max-width: 100px;border-radius: 50px;" src="../../images/logostore1.jpg" alt="" >
+					</a>
 				</div>
 				<div class="iq-search-bar">
-					<form ng-submit="submitForm()" class="searchbox">
-						<input ng-model="searchKeyword" type="text"
-							class="text search-input" placeholder="Tìm kiếm truyện tranh...">
+					<form  ng-submit="submitForm()" class="searchbox">
+						<input style="border-radius: 49px; width: 500px" ng-model="searchKeyword" type="text"
+							class="text search-input" placeholder="Tìm kiếm truyện tranh..." >
 						<a class="search-link"><i class="ri-search-line"></i></a>
 					</form>
 				</div>
@@ -102,17 +39,17 @@ to {
 							</form></li>
 						<li class="nav-item nav-icon"><a href="/favorite"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-heart-line"></i>
+								class="ri-heart-line" style="color: white;"></i>
 						</a></li>
 						<li class="nav-item nav-icon"><a href="#"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-notification-2-line"></i> <span
+								class="ri-notification-2-line" style="color: white"></i> <span
 								class="bg-primary dots"></span>
 						</a>
 							<div class="iq-sub-dropdown">
 								<div class="iq-card shadow-none m-0">
 									<div class="iq-card-body p-0">
-										<div class="p-3" style="background-color: #B22D28">
+										<div class="p-3" style="background-color: #659DBD">
 											<h5 class="mb-0 text-white">
 												Thông Báo<small class="badge  badge-light float-right pt-1">{{getOrderItem()}}</small>
 											</h5>
@@ -135,7 +72,7 @@ to {
 							</div></li>
 						<li class="nav-item nav-icon dropdown"><a href="#"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
-								class="ri-shopping-cart-2-line"></i> <th:block
+								class="ri-shopping-cart-2-line" style="color: white"></i> <th:block
 									th:if="${#request.remoteUser}">
 									<th:block th:if="${sum} != null">
 										<span class="badge badge-danger count-cart rounded-circle">{{
@@ -150,7 +87,7 @@ to {
 							<div class="iq-sub-dropdown">
 								<div class="iq-card shadow-none m-0">
 									<div class="iq-card-body p-0 toggle-cart-info">
-										<div class="p-3" style="background-color: #B22D28">
+										<div class="p-3" style="background-color:  #659DBD">
 											<h5 class="mb-0 text-white">
 												Giỏ Hàng<small class="badge  badge-light float-right pt-1">{{
 													getTotalItem()}}</small>
@@ -167,13 +104,13 @@ to {
 													<p class="mb-0">{{cd.price |number:0}} VNĐ</p>
 												</div>
 												<div class="float-right font-size-24 text-danger">
-													<i class="ri-close-fill"></i>
+													<i class="ri-close-fill" ng-click="showConfirm(cd)"></i>
 												</div>
 											</div>
 										</a>
 										<div class="d-flex align-items-center text-center p-3">
 											<a class="btn mr-2 iq-sign-btn" href="/checkout"
-												role="button" style="background-color: #B22D28">Giỏ Hàng</a>
+												role="button" style="background-color:  #659DBD">Giỏ Hàng</a>
 										</div>
 									</div>
 								</div>
@@ -194,7 +131,7 @@ to {
 								<div class="iq-sub-dropdown iq-user-dropdown">
 									<div class="iq-card shadow-none m-0">
 										<div class="iq-card-body p-0 ">
-											<div class="p-3" style="background: #B22D28">
+											<div class="p-3" style="background:  #659DBD">
 												<h5 class="mb-0 text-white line-height">Xin Chào
 													{{user.fullname}}</h5>
 											</div>
@@ -238,7 +175,7 @@ to {
 						</th:block>
 						<th:block th:unless="${#request.remoteUser}">
 							<li style="margin-top: 30px; color: black;"><a
-								class="dropdown-item" th:href="@{/security/login/form}"> <b>Đăng
+								class="dropdown-item" th:href="@{/security/login/form}" style="padding: 5px;border-radius: 5px"> <b>Đăng
 										nhập</b>
 							</a></li>
 						</th:block>
@@ -249,19 +186,7 @@ to {
 	</div>
 
 	<!-- TOP Nav Bar END -->
-	<script>
-		const text = document.querySelector('.fbstore-text');
-		const textContent = text.textContent;
-		text.textContent = '';
 
-		for (let i = 0; i < textContent.length; i++) {
-			const character = textContent.charAt(i);
-			const span = document.createElement('span');
-			span.textContent = character;
-			span.style.animationDelay = `${i * 0.1}s`; // Delay giữa mỗi ký tự
-			text.appendChild(span);
-		}
-	</script>
 
 </body>
 </html>

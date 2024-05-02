@@ -15,25 +15,11 @@
 									<div class="col-lg-12">
 										<div class="iq-card-transparent mb-0">
 											<div class="d-block text-center">
-												<h2 class="mb-3">DANH SÁCH SẢN PHẨM YÊU THÍCH</h2>
+												
 												<div class="w-100 iq-search-filter">
 													<ul
 														class="list-inline p-0 m-0 row justify-content-center search-menu-options">
-														
-														<li class="search-menu-opt">
-															<div
-																class="iq-search-bar search-book d-flex align-items-center">
-																<form action="#" class="searchbox">
-																	<input type="text" class="text search-input"
-																		placeholder="Tìm kiếm truyện tranh yêu thích..."> <a
-																		class="search-link" href="#"><i
-																		class="ri-search-line"></i></a>
-																</form>
-																<button type="submit"
-																	class="btn btn-primary search-data ml-2">Tìm
-																	kiếm</button>
-															</div>
-														</li>
+													
 													</ul>
 												</div>
 											</div>
@@ -41,6 +27,12 @@
 
 										<div class="iq-card">
 											<div class="iq-card-body">
+												<h5 class="mb-3" style="text-align: center;
+												background-color: #659bdb;
+												padding: 5px 0px;
+												border-radius: 20px;
+												color: #fbeec1;
+												">DANH SÁCH SẢN PHẨM YÊU THÍCH</h5>
 												<div class="row">
 													<div class="col-sm-6 col-md-4 col-lg-3"
 														ng-repeat="p in pagerfavorite.favorites">
@@ -48,62 +40,74 @@
 															class="iq-card iq-card-stretch iq-card-height browse-bookcontent">
 															<div class="iq-card-body p-0">
 																<div class="d-flex align-items-center">
-																	<div
-																		class="col-6 p-0 position-relative image-overlap-shadow" style=" height: 260px;">
+																	<div 
+																		class="col-6 p-0 position-relative image-overlap-shadow" style=" height: 260px;
+																		box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);">
 																		<a href="javascript:void();"> <img
 																			src="/images/book/{{p.book.image}}"
 																			class="img-fluid rounded" alt="" style="width: 100%; height: 100%;"></a>
 																		<div class="view-book">
 																			<a href="/product/detail/{{p.book.id}}"
-																				class="btn btn-sm btn-white">Xem Ngay</a>
+																				class="btn btn-sm btn-white" >Xem Ngay</a>
 																		</div>
 																	</div>
 																	<div class="col-6">
 																		<div class="mb-2">
-																			<h6 class="mb-1">{{p.book.name}}</h6>
+																			<h6 class="mb-1" style="font-weight: bold;">{{p.book.name}}</h6>
 																			<p class="font-size-13 line-height mb-1">{{p.book.category.name}}</p>
-																			<div class="d-block line-height">
-																				<span class="font-size-11 text-warning"> <i
-																					class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																					<i class="fa fa-star"></i>
-																				</span>
-																			</div>
 																		</div>
 																		<div class="price d-flex align-items-center">
-																			<h6>
-																				<b>{{p.book.price | number:0}}</b> VNĐ
+																			<h6 style="color: red;">
+																				<b style="color: red;">{{p.book.price | number:0}}</b> VNĐ
 																			</h6>
 																		</div>
 																		<div class="iq-product-action">
-																			<a href=""><i ng-click="addcart(p.book)"
-																				class="ri-shopping-cart-2-fill text-primary"></i></a> <a
-																				ng-click="removefavorite(p.book.id)" href=""
+																			<div ng-click="addcart(p.book)" style="background-color: #659bdb;
+																			 margin: 5px 10px;
+																			padding: 8px 0px;
+																			border-radius: 20px;
+																			text-align: center;
+																			cursor: pointer;">
+																				<a href=""><i 
+																					class="ri-shopping-cart-2-fill text-primary"></i></a>
+																			</div>
+																			<div ng-click="removefavorite(p.book.id)" style="background-color: #659bdb;
+																			 margin: 5px 10px;
+																			padding: 8px 0px;
+																			border-radius: 20px;
+																			text-align: center;
+																			cursor: pointer;">
+																				<a  href=""
 																				class="ml-2 ri-heart-fill" style="color: red;"></a>
+																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
-													<div class="col-sm-12" style="margin-left: 600px">
-														<nav aria-label="Page navigation example">
-															<ul class="pagination">
-																<li class="page-item"><a
-																	ng-click="pagerfavorite.first()" class="page-link">Trang đầu</a></li>
-																<li class="page-item"><a class="page-link"
-																	ng-click="pagerfavorite.prev()">Về trước</a></li>
-																<li class="page-item">
-																	<button class="page-link">{{pagerfavorite.page
-																		+ 1}} / {{pagerfavorite.count}}</button>
-																</li>
-																<li class="page-item"><a class="page-link"
-																	ng-click="pagerfavorite.next()">Tiếp theo</a></li>
-																<li class="page-item"><a class="page-link"
-																	ng-click="pagerfavorite.last()">Trang cuối</a></li>
-															</ul>
-														</nav>
-													</div>
+												</div>
+												<div class="col-sm-12" style="display: flex; justify-content: center;">
+													<nav aria-label="Page navigation example">
+														<ul class="pagination">
+															<li class="page-item"><a
+																style="background-color: #fbeec1; border: none; margin: 0px 5px; color: #808080;"
+																 ng-click="pagerfavorite.first()" class="page-link">Trang đầu</a></li>
+															<li class="page-item"><a class="page-link"
+																style="background-color: #fbeec1; border: none; margin: 0px 5px; color: #808080;"
+																 ng-click="pagerfavorite.prev()">Về trước</a></li>
+															<li class="page-item">
+																<button class="page-link">{{pagerfavorite.page
+																	+ 1}} / {{pagerfavorite.count}}</button>
+															</li>
+															<li class="page-item"><a class="page-link"
+																style="background-color: #fbeec1; border: none; margin: 0px 5px; color: #808080;"
+																 ng-click="pagerfavorite.next()">Tiếp theo</a></li>
+															<li class="page-item"><a class="page-link"
+																style="background-color: #fbeec1; border: none; margin: 0px 5px; color: #808080;"
+																 ng-click="pagerfavorite.last()">Trang cuối</a></li>
+														</ul>
+													</nav>
 												</div>
 											</div>
 										</div>

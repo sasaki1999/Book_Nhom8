@@ -9,6 +9,6 @@ import com.poly.entity.UserVoucher;
 import com.poly.entity.Voucher;
 
 public interface UserVoucherDAO extends JpaRepository<UserVoucher, Integer>{
-	List<UserVoucher> findByAccountAndVoucher(Account account, Voucher voucher);
+	UserVoucher findByAccountAndVoucher(Account account, Voucher voucher);
 	List<UserVoucher> findByAccount(Account account);
 }
