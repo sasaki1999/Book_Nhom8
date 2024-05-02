@@ -14,7 +14,16 @@ app.controller("statis-ctrl", function ($scope, $http) {
 			$scope.slcd = resp.data;
 		});
 		$http.get("/rest/products/ddhanghna").then(resp => {
-			$scope.ddhanghna = resp.data;
+			 // Lấy dữ liệu trả về từ phản hồi
+			 // Sử dụng dữ liệu
+			
+
+			var filteredData = resp.data.filter(item => item.orderstatus != 'Đã giao hàng' && item.orderstatus != 'Đã hủy đơn');
+			  for (var i = 0; i < filteredData.length; i++) {
+				var item = resp.data[i];	
+				console.log("Trạng thái đơn hàng:", item.orderstatus);
+			}
+			$scope.ddhanghna = filteredData;
 		});
 		$http.get("/rest/products/tongtienhomnay").then(resp => {
 			$scope.tongtienhomnay = resp.data;

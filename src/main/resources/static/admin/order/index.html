@@ -86,7 +86,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
+						<!-- <div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
 								<div class="card-body">
 									Hủy đơn <span
@@ -94,6 +94,21 @@
 								</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
 									<a ng-click="trangthai(4)" id="cancelled"
+										class="small text-white stretched-link">Xem ngay</a>
+									<div class="small text-white">
+										<i class="fas fa-window-close"></i>
+									</div>
+								</div>
+							</div>
+						</div> -->
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-danger text-white mb-4">
+								<div class="card-body">
+									Hủy đơn <span
+										class="badge bg-dark text-white ms-1 rounded-pill ng-binding">{{list[3]}}</span>
+								</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a ng-click="trangthai(6)" id="cancelled"
 										class="small text-white stretched-link">Xem ngay</a>
 									<div class="small text-white">
 										<i class="fas fa-window-close"></i>

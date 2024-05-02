@@ -1,16 +1,17 @@
 <!-- Page Content  -->
-<div id="content-page" class="">
+<div id="content-page" >
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="iq-card">
 				<div class="iq-card-header d-flex justify-content-between">
 					<div class="iq-header-title">
-						<h4 class="card-title">Đơn hàng</h4>
+						<h4 class="card-title"><a href="#!statisticalorder">Đơn hàng</a></h4>
+
 					</div>
 				</div>
 				<div class="iq-card-body">
 					<div class="row">
-						<div class="col-xl-4 col-md-6">
+						<div class="col-xl-3 col-md-6">
 							<div class="card text-white mb-4" style="background: #00CCFF;">
 								<div class="card-body">
 									Chờ xác nhận <span
@@ -25,7 +26,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 col-md-6">
+						<!-- <div class="col-xl-4 col-md-6">
 							<div class="card text-white mb-4" style="background: #0241ed;">
 								<div class="card-body">
 									Chờ lấy hàng <span
@@ -39,8 +40,8 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
+						</div> -->
+						<div class="col-xl-3 col-md-6">
 							<div class="card bg-warning text-white mb-4">
 								<div class="card-body">
 									Đang giao <span
@@ -55,7 +56,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 col-md-6">
+						<!-- <div class="col-xl-4 col-md-6">
 							<div class="card  text-white mb-4" style="background: #00CC99;">
 								<div class="card-body ">
 									Tiến hành giao hàng <span
@@ -69,8 +70,8 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-xl-4 col-md-6">
+						</div> -->
+						<div class="col-xl-3 col-md-6">
 							<div class="card  text-white mb-4" style="background: #17c903;">
 								<div class="card-body ">
 									Đã giao <span
@@ -85,7 +86,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 col-md-6">
+						<div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
 								<div class="card-body">
 									Hủy đơn <span
@@ -127,6 +128,7 @@
 									<!-- <th>Trạng thái</th> -->
 									<th>Xem chi tiết</th>
 									<th>Hoạt động</th>
+									<th>Trạng thái</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -143,14 +145,18 @@
 											tiết</a></td>
 									<td>
 										<button ng-if="item.orderstatus === 'Chờ xác nhận'"
-											class="btn btn-primary bg-warning" ng-click="UpBill(item)">Xác
+											class="btn btn-primary bg-warning" ng-click="yes(item)">Xác
 											nhận</button>
 										<button ng-if="item.orderstatus === 'Chờ xác nhận'" ng-click="cancel(item)"
 											class="btn btn-danger bg-danger">Hủy</button>
+											<button ng-if="item.orderstatus === 'Đang giao hàng'" ng-click="no(item)"
+											class="btn btn-success bg-success">Hoàn tất</button>						
+									</td>
+									<td>
 										<span ng-if="item.orderstatus === 'Đã hủy đơn'">Đã hủy đơn</span>
-										<span
-											ng-if="item.orderstatus !== 'Chờ xác nhận' && item.orderstatus !=='Đã hủy đơn'">Hàng
-											đang giao</span>
+										<span ng-if="item.orderstatus === 'Chờ xác nhận'">Chờ xác nhận</span>
+										<span ng-if="item.orderstatus === 'Đang giao hàng'">Đang giao hàng</span>
+											<span ng-if="item.orderstatus === 'Đã giao hàng'">Hoàn tất</span>
 									</td>
 								</tr>
 							</tbody>

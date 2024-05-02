@@ -164,6 +164,22 @@ app.controller("statisticalorder-ctrl", function ($scope, $http) {
 			console.log(error);
 		})
 	}
+	$scope.yes = function (item) {
+		$http.get(`/rest/order/yes/${item.id}`).then(resp => {
+			console.log(resp.data);
+			$scope.initialize();
+		}).catch(error => {
+			console.log(error);
+		})
+	}
+	$scope.no = function (item) {
+		$http.get(`/rest/order/no/${item.id}`).then(resp => {
+			console.log(resp.data);
+			$scope.initialize();
+		}).catch(error => {
+			console.log(error);
+		})
+	}
 
 	// $scope.showdonhangdanggiao = function () {
 	// 	$http.get("/rest/order/dhdg")
